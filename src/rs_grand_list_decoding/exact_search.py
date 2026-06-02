@@ -21,7 +21,7 @@ from rs_grand_list_decoding.rs_code import (
 
 DEFAULT_MAX_WORDS = 2_000_000
 DEFAULT_MAX_CODEWORDS = 200_000
-DEFAULT_MAX_OPERATIONS = 50_000_000
+DEFAULT_MAX_OPERATIONS = 5_000_000
 
 
 def alphabet_from_codewords(codewords: list[tuple]) -> list[Any]:
@@ -176,6 +176,7 @@ def build_scalar_rs_instance(p: int, n: int, k: int) -> dict[str, Any]:
         "domain": domain,
         "codewords": codewords,
         "alphabet": list(range(p)),
+        "ambient_alphabet_size": p,
     }
 
 
@@ -203,6 +204,7 @@ def build_folded_rs_instance(
         "domain": scalar["domain"],
         "codewords": codewords,
         "alphabet": alphabet,
+        "ambient_alphabet_size": p**m,
     }
 
 
@@ -242,6 +244,7 @@ def build_interleaved_rs_instance(
         "domain": scalar["domain"],
         "codewords": codewords,
         "alphabet": alphabet,
+        "ambient_alphabet_size": p**m,
     }
 
 
@@ -306,7 +309,8 @@ def _instance_rows(
         "m": instance["m"],
         "mode": instance["mode"],
         "N": N,
-        "alphabet_size": len(alphabet),
+        "search_alphabet_size": len(alphabet),
+        "ambient_alphabet_size": instance["ambient_alphabet_size"],
         "code_size": len(instance["codewords"]),
         "johnson_radius": 1.0 - math.sqrt(rho),
         **_thresholds_for_instance(instance, eps_bits),
@@ -345,8 +349,8 @@ def _instance_rows(
 
 
 def generate_exact_sweep_rows(
-    primes: Iterable[int] = (5, 7, 13),
-    max_n: int = 6,
+    primes: Iterable[int] = (5, 7, 13, 17),
+    max_n: int = 8,
     m_values: Iterable[int] = (1, 2),
     eps_bits: float = 0.0,
     max_words: int = DEFAULT_MAX_WORDS,
@@ -359,6 +363,34 @@ def generate_exact_sweep_rows(
             if n <= 1 or n > max_n:
                 continue
             for k in range(1, n):
+                if p**k > DEFAULT_MAX_CODEWORDS:
+                    rho = k / n
+                    rows.append(
+                        {
+                            "p": p,
+                            "n": n,
+                            "k": k,
+                            "rho": rho,
+                            "m": 1,
+                            "mode": "scalar",
+                            "N": n,
+                            "search_alphabet_size": p,
+                            "ambient_alphabet_size": p,
+                            "code_size": "",
+                            "radius": "",
+                            "max_list": "",
+                            "num_centers": "",
+                            "johnson_radius": 1.0 - math.sqrt(rho),
+                            "volume_grid": "",
+                            "capacity_entropy": "",
+                            "best_center": "",
+                            "status": (
+                                f"refused: scalar code has {p**k} codewords, "
+                                f"exceeding max_codewords={DEFAULT_MAX_CODEWORDS}"
+                            ),
+                        }
+                    )
+                    continue
                 scalar = build_scalar_rs_instance(p, n, k)
                 rows.extend(
                     _instance_rows(
@@ -396,7 +428,8 @@ def generate_exact_sweep_rows(
                                 "m": m,
                                 "mode": "interleaved",
                                 "N": N,
-                                "alphabet_size": "",
+                                "search_alphabet_size": "",
+                                "ambient_alphabet_size": p**m,
                                 "code_size": "",
                                 "radius": "",
                                 "max_list": "",
@@ -431,7 +464,8 @@ def write_exact_sweep_csv(path: Path, rows: list[dict[str, Any]]) -> None:
         "m",
         "mode",
         "N",
-        "alphabet_size",
+        "search_alphabet_size",
+        "ambient_alphabet_size",
         "code_size",
         "radius",
         "max_list",
@@ -453,12 +487,30 @@ def write_exact_sweep_summary(path: Path, rows: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     ok_rows = [row for row in rows if row["status"] == "ok"]
     refused_rows = [row for row in rows if str(row["status"]).startswith("refused")]
-    terminal_rows = [
-        row
-        for row in ok_rows
-        if row["radius"] == row["N"]
-        and row["mode"] in {"scalar", "folded", "interleaved"}
-    ]
+
+    grouped: dict[tuple, list[dict[str, Any]]] = {}
+    for row in ok_rows:
+        key = (row["p"], row["n"], row["k"], row["mode"], row["m"])
+        grouped.setdefault(key, []).append(row)
+
+    interesting_rows: list[tuple[str, dict[str, Any]]] = []
+    for group_rows in grouped.values():
+        first = group_rows[0]
+        N = int(first["N"])
+        n = int(first["n"])
+        k = int(first["k"])
+        rho = float(first["rho"])
+        d = n - k + 1
+        candidate_radii = {
+            "johnson": math.floor((1.0 - math.sqrt(rho)) * N),
+            "capacity": math.floor(float(first["capacity_entropy"]) * N),
+            "d-1": max(0, min(N, d - 1)),
+            "d": max(0, min(N, d)),
+        }
+        by_radius = {row["radius"]: row for row in group_rows}
+        for label, radius in candidate_radii.items():
+            if radius in by_radius:
+                interesting_rows.append((label, by_radius[radius]))
 
     lines = [
         "# Exact Sweep Summary",
@@ -467,21 +519,22 @@ def write_exact_sweep_summary(path: Path, rows: list[dict[str, Any]]) -> None:
         "",
         f"- Successful profile rows: `{len(ok_rows)}`",
         f"- Refused rows: `{len(refused_rows)}`",
+        "- Default sweep includes `p in {5, 7, 13, 17}` and smooth divisors `n <= 8`.",
         "- Toy capacity columns use `eps_bits = 0`, not the prize value `2^-128`.",
         "",
-        "| p | n | k | mode | m | N | alphabet | code size | max radius list | status |",
-        "|---:|---:|---:|---|---:|---:|---:|---:|---:|---|",
+        "| label | p | n | k | mode | m | radius | max list | search Q | ambient Q | code size |",
+        "|---|---:|---:|---:|---|---:|---:|---:|---:|---:|---:|",
     ]
-    for row in terminal_rows[:40]:
+    for label, row in interesting_rows[:60]:
         lines.append(
-            "| {p} | {n} | {k} | {mode} | {m} | {N} | {alphabet_size} | {code_size} | {max_list} | {status} |".format(
-                **row
+            "| {label} | {p} | {n} | {k} | {mode} | {m} | {radius} | {max_list} | {search_alphabet_size} | {ambient_alphabet_size} | {code_size} |".format(
+                label=label, **row
             )
         )
-    if len(terminal_rows) > 40:
+    if len(interesting_rows) > 60:
         lines.append(
-            "| ... | ... | ... | ... | ... | ... | ... | ... | ... | "
-            f"{len(terminal_rows) - 40} more profiles |"
+            "| ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | "
+            f"{len(interesting_rows) - 60} more rows |"
         )
     path.write_text("\n".join(lines) + "\n")
 

@@ -7,6 +7,8 @@ test_exact_profile_refuses_large_received_space (test_exact_search.ExactSearchTe
 test_folded_smoke (test_exact_search.ExactSearchTests.test_folded_smoke) ... ok
 test_interleaved_smoke (test_exact_search.ExactSearchTests.test_interleaved_smoke) ... ok
 test_repetition_code_profile (test_exact_search.ExactSearchTests.test_repetition_code_profile) ... ok
+test_scalar_rs_7_6_3_boundary (test_exact_search.ExactSearchTests.test_scalar_rs_7_6_3_boundary) ... ok
+test_tiny_scalar_rs_min_distance_boundary (test_exact_search.ExactSearchTests.test_tiny_scalar_rs_min_distance_boundary) ... ok
 test_tiny_scalar_rs_profile (test_exact_search.ExactSearchTests.test_tiny_scalar_rs_profile) ... ok
 test_factor (test_finite_field.FiniteFieldTests.test_factor) ... ok
 test_is_prime (test_finite_field.FiniteFieldTests.test_is_prime) ... ok
@@ -17,8 +19,15 @@ test_enumerate_rs_codeword_count (test_rs_code.RSCodeTests.test_enumerate_rs_cod
 test_fold_codeword (test_rs_code.RSCodeTests.test_fold_codeword) ... ok
 test_interleave_codewords (test_rs_code.RSCodeTests.test_interleave_codewords) ... ok
 test_rs_minimum_distance (test_rs_code.RSCodeTests.test_rs_minimum_distance) ... ok
+test_bruteforce_and_subset_counts_agree (test_structured_bad_centers.StructuredBadCenterTests.test_bruteforce_and_subset_counts_agree) ... ok
+test_codeword_center_radius_zero_count_is_one (test_structured_bad_centers.StructuredBadCenterTests.test_codeword_center_radius_zero_count_is_one) ... ok
+test_lagrange_interpolate_recovers_polynomial (test_structured_bad_centers.StructuredBadCenterTests.test_lagrange_interpolate_recovers_polynomial) ... ok
+test_monomial_center (test_structured_bad_centers.StructuredBadCenterTests.test_monomial_center) ... ok
+test_search_report_shape (test_structured_bad_centers.StructuredBadCenterTests.test_search_report_shape) ... ok
+test_sparse_center (test_structured_bad_centers.StructuredBadCenterTests.test_sparse_center) ... ok
+test_structured_search_does_not_exceed_exact_profile (test_structured_bad_centers.StructuredBadCenterTests.test_structured_search_does_not_exceed_exact_profile) ... ok
 
 ----------------------------------------------------------------------
-Ran 19 tests in 0.037s
+Ran 28 tests in 22.188s
 
 OK
