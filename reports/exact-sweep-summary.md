@@ -15,7 +15,7 @@ Toy exact enumeration over smooth subgroup domains.
 | d | 5 | 2 | 1 | scalar | 1 | 2 | 5 | 5 | 5 | 5 |
 | johnson | 5 | 2 | 1 | folded | 2 | 0 | 1 | 5 | 25 | 5 |
 | capacity | 5 | 2 | 1 | folded | 2 | 0 | 1 | 5 | 25 | 5 |
-| d-1 | 5 | 2 | 1 | folded | 2 | 1 | 5 | 5 | 25 | 5 |
+| d-1 | 5 | 2 | 1 | folded | 2 | 0 | 1 | 5 | 25 | 5 |
 | d | 5 | 2 | 1 | folded | 2 | 1 | 5 | 5 | 25 | 5 |
 | johnson | 5 | 2 | 1 | interleaved | 2 | 0 | 1 | 25 | 25 | 25 |
 | capacity | 5 | 2 | 1 | interleaved | 2 | 1 | 2 | 25 | 25 | 25 |
@@ -27,7 +27,7 @@ Toy exact enumeration over smooth subgroup domains.
 | d | 5 | 4 | 1 | scalar | 1 | 4 | 5 | 5 | 5 | 5 |
 | johnson | 5 | 4 | 1 | folded | 2 | 1 | 2 | 5 | 25 | 5 |
 | capacity | 5 | 4 | 1 | folded | 2 | 1 | 2 | 5 | 25 | 5 |
-| d-1 | 5 | 4 | 1 | folded | 2 | 2 | 5 | 5 | 25 | 5 |
+| d-1 | 5 | 4 | 1 | folded | 2 | 1 | 2 | 5 | 25 | 5 |
 | d | 5 | 4 | 1 | folded | 2 | 2 | 5 | 5 | 25 | 5 |
 | johnson | 5 | 4 | 2 | scalar | 1 | 1 | 1 | 5 | 5 | 25 |
 | capacity | 5 | 4 | 2 | scalar | 1 | 1 | 1 | 5 | 5 | 25 |
@@ -35,7 +35,7 @@ Toy exact enumeration over smooth subgroup domains.
 | d | 5 | 4 | 2 | scalar | 1 | 3 | 17 | 5 | 5 | 25 |
 | johnson | 5 | 4 | 2 | folded | 2 | 0 | 1 | 25 | 25 | 25 |
 | capacity | 5 | 4 | 2 | folded | 2 | 1 | 2 | 25 | 25 | 25 |
-| d-1 | 5 | 4 | 2 | folded | 2 | 2 | 25 | 25 | 25 | 25 |
+| d-1 | 5 | 4 | 2 | folded | 2 | 1 | 2 | 25 | 25 | 25 |
 | d | 5 | 4 | 2 | folded | 2 | 2 | 25 | 25 | 25 | 25 |
 | johnson | 5 | 4 | 3 | scalar | 1 | 0 | 1 | 5 | 5 | 125 |
 | capacity | 5 | 4 | 3 | scalar | 1 | 0 | 1 | 5 | 5 | 125 |
@@ -43,15 +43,15 @@ Toy exact enumeration over smooth subgroup domains.
 | d | 5 | 4 | 3 | scalar | 1 | 2 | 25 | 5 | 5 | 125 |
 | johnson | 5 | 4 | 3 | folded | 2 | 0 | 1 | 25 | 25 | 125 |
 | capacity | 5 | 4 | 3 | folded | 2 | 0 | 1 | 25 | 25 | 125 |
-| d-1 | 5 | 4 | 3 | folded | 2 | 1 | 10 | 25 | 25 | 125 |
-| d | 5 | 4 | 3 | folded | 2 | 2 | 125 | 25 | 25 | 125 |
+| d-1 | 5 | 4 | 3 | folded | 2 | 0 | 1 | 25 | 25 | 125 |
+| d | 5 | 4 | 3 | folded | 2 | 1 | 10 | 25 | 25 | 125 |
 | johnson | 7 | 2 | 1 | scalar | 1 | 0 | 1 | 7 | 7 | 7 |
 | capacity | 7 | 2 | 1 | scalar | 1 | 1 | 2 | 7 | 7 | 7 |
 | d-1 | 7 | 2 | 1 | scalar | 1 | 1 | 2 | 7 | 7 | 7 |
 | d | 7 | 2 | 1 | scalar | 1 | 2 | 7 | 7 | 7 | 7 |
 | johnson | 7 | 2 | 1 | folded | 2 | 0 | 1 | 7 | 49 | 7 |
 | capacity | 7 | 2 | 1 | folded | 2 | 0 | 1 | 7 | 49 | 7 |
-| d-1 | 7 | 2 | 1 | folded | 2 | 1 | 7 | 7 | 49 | 7 |
+| d-1 | 7 | 2 | 1 | folded | 2 | 0 | 1 | 7 | 49 | 7 |
 | d | 7 | 2 | 1 | folded | 2 | 1 | 7 | 7 | 49 | 7 |
 | johnson | 7 | 2 | 1 | interleaved | 2 | 0 | 1 | 49 | 49 | 49 |
 | capacity | 7 | 2 | 1 | interleaved | 2 | 1 | 2 | 49 | 49 | 49 |

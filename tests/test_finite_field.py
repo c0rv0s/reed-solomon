@@ -1,6 +1,12 @@
 import unittest
 
-from rs_grand_list_decoding.finite_field import factor, is_prime, primitive_root, smooth_domain
+from rs_grand_list_decoding.finite_field import (
+    factor,
+    is_prime,
+    primitive_root,
+    random_domain,
+    smooth_domain,
+)
 
 
 class FiniteFieldTests(unittest.TestCase):
@@ -29,6 +35,13 @@ class FiniteFieldTests(unittest.TestCase):
     def test_smooth_domain_rejects_invalid_size(self):
         with self.assertRaises(ValueError):
             smooth_domain(17, 7)
+
+    def test_random_domain(self):
+        domain = random_domain(17, 8, seed=0)
+        self.assertEqual(len(domain), 8)
+        self.assertEqual(len(set(domain)), 8)
+        self.assertTrue(all(1 <= x < 17 for x in domain))
+        self.assertEqual(domain, random_domain(17, 8, seed=0))
 
 
 if __name__ == "__main__":

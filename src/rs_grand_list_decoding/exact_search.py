@@ -261,6 +261,15 @@ def divisors(n: int) -> list[int]:
     return sorted(values)
 
 
+def symbol_min_distance(mode: str, n: int, k: int, m: int) -> int:
+    """Return the symbol-level minimum distance for scalar/interleaved/folded modes."""
+    if mode == "folded":
+        if n % m != 0:
+            raise ValueError("folded mode requires m | n")
+        return (n // m) - ((k - 1) // m)
+    return n - k + 1
+
+
 def _center_to_string(center: tuple | None, max_len: int = 120) -> str:
     if center is None:
         return ""
@@ -499,8 +508,10 @@ def write_exact_sweep_summary(path: Path, rows: list[dict[str, Any]]) -> None:
         N = int(first["N"])
         n = int(first["n"])
         k = int(first["k"])
+        m = int(first["m"])
+        mode = str(first["mode"])
         rho = float(first["rho"])
-        d = n - k + 1
+        d = symbol_min_distance(mode, n, k, m)
         candidate_radii = {
             "johnson": math.floor((1.0 - math.sqrt(rho)) * N),
             "capacity": math.floor(float(first["capacity_entropy"]) * N),

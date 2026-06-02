@@ -5,6 +5,7 @@ from rs_grand_list_decoding.exact_search import (
     build_interleaved_rs_instance,
     build_scalar_rs_instance,
     exact_profile,
+    symbol_min_distance,
 )
 
 
@@ -52,6 +53,11 @@ class ExactSearchTests(unittest.TestCase):
         instance = build_interleaved_rs_instance(p=5, n=4, k=1, m=2)
         self.assertEqual(len(instance["codewords"]), 25)
         self.assertEqual(len(instance["codewords"][0]), 4)
+
+    def test_symbol_min_distance_folded(self):
+        self.assertEqual(symbol_min_distance("scalar", n=8, k=4, m=1), 5)
+        self.assertEqual(symbol_min_distance("interleaved", n=8, k=4, m=2), 5)
+        self.assertEqual(symbol_min_distance("folded", n=8, k=4, m=2), 3)
 
 
 if __name__ == "__main__":

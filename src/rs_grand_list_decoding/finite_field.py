@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import random
+
 
 def is_prime(p: int) -> bool:
     """Return whether p is prime, using trial division suitable for experiments."""
@@ -69,3 +71,14 @@ def smooth_domain(p: int, n: int, coset_shift: int = 1) -> list[int]:
         raise RuntimeError("constructed domain has duplicate elements")
     return domain
 
+
+def random_domain(p: int, n: int, seed: int) -> list[int]:
+    """Return a deterministic random size-n subset of GF(p)^*."""
+    if not is_prime(p):
+        raise ValueError("p must be prime")
+    if n <= 0:
+        raise ValueError("n must be positive")
+    if n > p - 1:
+        raise ValueError("n cannot exceed p - 1")
+    rng = random.Random(seed)
+    return rng.sample(range(1, p), n)
