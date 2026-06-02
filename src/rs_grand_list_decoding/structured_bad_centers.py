@@ -181,7 +181,9 @@ def add_score_metrics(row: dict[str, Any], p: int, N: int, k: int, radius: int, 
     """Mutate a row with baseline-derived score metrics."""
     metrics = baseline_metrics(p, N, k, radius, m=m)
     row.update(metrics)
-    row["generic_ratio"] = row["count"] / max(1.0, float(metrics["generic_expected"]))
+    generic_expected = float(metrics["generic_expected"])
+    row["generic_ratio_raw"] = math.inf if generic_expected == 0 else row["count"] / generic_expected
+    row["generic_ratio"] = row["count"] / max(1.0, generic_expected)
     row["boundary_ratio"] = row["count"] / max(1, int(metrics["subset_count"]))
 
 
@@ -552,6 +554,7 @@ def write_structured_csv(path: Path, rows: list[dict[str, Any]]) -> None:
         "subset_count",
         "generic_expected",
         "generic_ratio",
+        "generic_ratio_raw",
         "boundary_ratio",
         "boundary_case",
         "center_type",

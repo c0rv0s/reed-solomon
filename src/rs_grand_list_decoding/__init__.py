@@ -6,4 +6,5 @@ __all__ = [
     "rs_capacity_threshold",
     "rs_code",
     "structured_bad_centers",
+    "triage_search",
 ]

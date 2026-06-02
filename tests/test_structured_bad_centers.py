@@ -84,6 +84,7 @@ class StructuredBadCenterTests(unittest.TestCase):
                 "subset_count",
                 "generic_expected",
                 "generic_ratio",
+                "generic_ratio_raw",
                 "boundary_ratio",
                 "boundary_case",
                 "center_type",
@@ -113,6 +114,10 @@ class StructuredBadCenterTests(unittest.TestCase):
         self.assertEqual(metrics["subset_count"], math.comb(4, s))
         self.assertEqual(metrics["generic_expected"], math.comb(4, s) * 5 ** (2 - s))
         self.assertFalse(metrics["boundary_case"])
+
+    def test_generic_ratio_raw_is_unclipped(self):
+        rows = search_monomial_centers(p=5, n=4, k=2, radius=1, exponent_range=[0])
+        self.assertGreaterEqual(rows[0]["generic_ratio_raw"], rows[0]["generic_ratio"])
 
     def test_boundary_case_marked_at_s_equals_k(self):
         rows = search_monomial_centers(p=5, n=4, k=2, radius=2, exponent_range=[0])

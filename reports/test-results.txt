@@ -27,14 +27,22 @@ test_bruteforce_and_subset_counts_agree (test_structured_bad_centers.StructuredB
 test_codeword_center_radius_zero_count_is_one (test_structured_bad_centers.StructuredBadCenterTests.test_codeword_center_radius_zero_count_is_one) ... ok
 test_duplicate_monomial_exponents_dedupe (test_structured_bad_centers.StructuredBadCenterTests.test_duplicate_monomial_exponents_dedupe) ... ok
 test_folded_count_agrees_with_exact_folded_bruteforce (test_structured_bad_centers.StructuredBadCenterTests.test_folded_count_agrees_with_exact_folded_bruteforce) ... ok
+test_generic_ratio_raw_is_unclipped (test_structured_bad_centers.StructuredBadCenterTests.test_generic_ratio_raw_is_unclipped) ... ok
 test_lagrange_interpolate_recovers_polynomial (test_structured_bad_centers.StructuredBadCenterTests.test_lagrange_interpolate_recovers_polynomial) ... ok
 test_monomial_center (test_structured_bad_centers.StructuredBadCenterTests.test_monomial_center) ... ok
 test_search_report_shape (test_structured_bad_centers.StructuredBadCenterTests.test_search_report_shape) ... ok
 test_smooth_and_random_domains_are_valid (test_structured_bad_centers.StructuredBadCenterTests.test_smooth_and_random_domains_are_valid) ... ok
 test_sparse_center (test_structured_bad_centers.StructuredBadCenterTests.test_sparse_center) ... ok
 test_structured_search_does_not_exceed_exact_profile (test_structured_bad_centers.StructuredBadCenterTests.test_structured_search_does_not_exceed_exact_profile) ... ok
+test_comparison_and_patterns_smoke (test_triage_search.TriageSearchTests.test_comparison_and_patterns_smoke) ... ok
+test_generate_triage_rows_smoke (test_triage_search.TriageSearchTests.test_generate_triage_rows_smoke) ... ok
+test_pattern_fields (test_triage_search.TriageSearchTests.test_pattern_fields) ... ok
+test_sampled_count_matches_exact_when_full_subset_space_scanned (test_triage_search.TriageSearchTests.test_sampled_count_matches_exact_when_full_subset_space_scanned) ... ok
+test_sampled_index_subsets_deterministic_when_sampled (test_triage_search.TriageSearchTests.test_sampled_index_subsets_deterministic_when_sampled) ... ok
+test_sampled_index_subsets_exact_when_budget_suffices (test_triage_search.TriageSearchTests.test_sampled_index_subsets_exact_when_budget_suffices) ... ok
+test_stable_seed (test_triage_search.TriageSearchTests.test_stable_seed) ... ok
 
 ----------------------------------------------------------------------
-Ran 35 tests in 21.920s
+Ran 43 tests in 21.325s
 
 OK
