@@ -15,9 +15,9 @@ RATES = (1 / 2, 1 / 4, 1 / 8, 1 / 16)
 
 def _ln_q_minus_1(ln_q: float) -> float:
     """Compute ln(Q - 1) from ln(Q) without overflowing for huge Q."""
-    if ln_q > 50:
-        return ln_q
-    return math.log(math.expm1(ln_q))
+    if ln_q <= 0:
+        raise ValueError("ln_q must be positive")
+    return ln_q + math.log1p(-math.exp(-ln_q))
 
 
 def h_q(delta: float, ln_q: float) -> float:

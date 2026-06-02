@@ -1,7 +1,12 @@
 import math
 import unittest
 
-from rs_grand_list_decoding.rs_capacity_threshold import h_q, inverse_h_q, threshold_params
+from rs_grand_list_decoding.rs_capacity_threshold import (
+    h_q,
+    inverse_h_q,
+    log_q_ball,
+    threshold_params,
+)
 
 
 class CapacityThresholdTests(unittest.TestCase):
@@ -39,6 +44,17 @@ class CapacityThresholdTests(unittest.TestCase):
             float(out["delta_volume_grid"]),
             float(out["delta_entropy"]) + one_step + 1e-12,
         )
+
+    def test_log_q_ball_matches_exact_small_cases(self):
+        for Q in (2, 3, 5, 17):
+            ln_Q = math.log(Q)
+            for N in range(1, 9):
+                for t in range(N + 1):
+                    exact_volume = sum(
+                        math.comb(N, i) * (Q - 1) ** i for i in range(t + 1)
+                    )
+                    exact_log_q = math.log(exact_volume) / ln_Q
+                    self.assertLess(abs(log_q_ball(N, t, ln_Q) - exact_log_q), 1e-10)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,13 @@
 test_capacity_values_match_research_notes (test_capacity_threshold.CapacityThresholdTests.test_capacity_values_match_research_notes) ... ok
 test_entropy_inverse_round_trip (test_capacity_threshold.CapacityThresholdTests.test_entropy_inverse_round_trip) ... ok
+test_log_q_ball_matches_exact_small_cases (test_capacity_threshold.CapacityThresholdTests.test_log_q_ball_matches_exact_small_cases) ... ok
 test_m_improves_folded_threshold_toward_capacity (test_capacity_threshold.CapacityThresholdTests.test_m_improves_folded_threshold_toward_capacity) ... ok
 test_volume_grid_does_not_exceed_entropy_by_more_than_one_step (test_capacity_threshold.CapacityThresholdTests.test_volume_grid_does_not_exceed_entropy_by_more_than_one_step) ... ok
+test_exact_profile_refuses_large_received_space (test_exact_search.ExactSearchTests.test_exact_profile_refuses_large_received_space) ... ok
+test_folded_smoke (test_exact_search.ExactSearchTests.test_folded_smoke) ... ok
+test_interleaved_smoke (test_exact_search.ExactSearchTests.test_interleaved_smoke) ... ok
+test_repetition_code_profile (test_exact_search.ExactSearchTests.test_repetition_code_profile) ... ok
+test_tiny_scalar_rs_profile (test_exact_search.ExactSearchTests.test_tiny_scalar_rs_profile) ... ok
 test_factor (test_finite_field.FiniteFieldTests.test_factor) ... ok
 test_is_prime (test_finite_field.FiniteFieldTests.test_is_prime) ... ok
 test_primitive_root_generates_field_units (test_finite_field.FiniteFieldTests.test_primitive_root_generates_field_units) ... ok
@@ -13,6 +19,6 @@ test_interleave_codewords (test_rs_code.RSCodeTests.test_interleave_codewords) .
 test_rs_minimum_distance (test_rs_code.RSCodeTests.test_rs_minimum_distance) ... ok
 
 ----------------------------------------------------------------------
-Ran 13 tests in 0.029s
+Ran 19 tests in 0.037s
 
 OK
