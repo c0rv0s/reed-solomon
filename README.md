@@ -24,6 +24,8 @@ Prize.
 - `reports/triage-patterns-random.csv`: random-domain exponent patterns using raw exponents and modulo `p-1`.
 - `reports/triage-validation.csv`: reruns top smooth triage candidates against 100 random domains.
 - `reports/triage-validation-summary.md`: empirical p-value summary for validated candidates.
+- `reports/lower-bound-grid.csv`: numerical scan of explicit smooth-domain coset-union lower bounds.
+- `reports/lower-bound-grid-summary.md`: budget/capacity summary for the lower-bound grid.
 
 ## Run
 
@@ -35,6 +37,7 @@ env PYTHONPATH=src python3 -m rs_grand_list_decoding.exact_search --csv reports/
 env PYTHONPATH=src python3 -m rs_grand_list_decoding.structured_bad_centers --csv reports/structured-centers.csv --summary reports/structured-centers-summary.md --comparison-csv reports/domain-comparison.csv --comparison-summary reports/domain-comparison-summary.md
 env PYTHONPATH=src python3 -m rs_grand_list_decoding.triage_search --csv reports/triage-search.csv --summary reports/triage-search-summary.md --comparison-csv reports/triage-domain-comparison.csv --comparison-summary reports/triage-domain-comparison-summary.md --patterns-csv reports/triage-patterns.csv --patterns-summary reports/triage-patterns-summary.md --patterns-smooth-coset-csv reports/triage-patterns-smooth-coset.csv --patterns-smooth-coset-summary reports/triage-patterns-smooth-coset-summary.md --patterns-random-csv reports/triage-patterns-random.csv --patterns-random-summary reports/triage-patterns-random-summary.md
 env PYTHONPATH=src python3 -m rs_grand_list_decoding.triage_validation --input reports/triage-search.csv --csv reports/triage-validation.csv --summary reports/triage-validation-summary.md
+env PYTHONPATH=src python3 -m rs_grand_list_decoding.lower_bound_constructions --csv reports/lower-bound-grid.csv --summary reports/lower-bound-grid-summary.md
 ```
 
 ## Notes
