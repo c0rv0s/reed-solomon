@@ -63,6 +63,57 @@ The Stage 6 grid in `reports/lower-bound-grid.csv` checks the requested power-of
 is `log2(list) - log2(eps*q) = 3 - 128 = -125`. In this parameter slice, the construction is a
 real smooth-domain obstruction to account for, but not yet a prize-budget counterexample.
 
+Stage 7 reparameterizes the same construction by quotient size `M = n / ell`. If `rho = a/b` and
+`rho * M` is not integral, set
+
+```text
+r = floor(rho * M) + 1.
+```
+
+The construction then has
+
+```text
+radius = 1 - r/M
+list lower bound = binom(M, r).
+```
+
+This shows why power-of-two domains with dyadic rates are the least favorable case: `rho * M` is
+usually integral, so the construction collapses to tiny quotient counts. On mixed-smooth domains it
+can exceed the prize budget. The default Stage 7 report `reports/quotient-lower-bound.csv` finds
+`807` rows for `q_bits = 256` that both beat `eps*q` and lie below the entropy capacity candidate.
+
+The concrete example from the report is:
+
+```text
+rho = 1/4
+M = 225
+r = 57
+ell = 4
+n = 900
+k = 225
+s = 228
+radius = 0.746666...
+delta_entropy = 0.747370...
+log2 binom(225,57) = 179.683
+log2(eps*q) = 128
+margin = 51.683 bits
+```
+
+The materialization report found a 256-bit prime `p = c*n + 1`, so this is not only a numerical
+quotient row; it can be realized as a multiplicative subgroup over a concrete prime field. This is
+a likely counterexample to a capacity-threshold statement for general mixed-smooth domains, unless
+the challenge intends a narrower two-power or two-adic FFT-domain convention.
+
+## Domain Convention Split
+
+The proof target now splits into two regimes:
+
+1. **Power-of-two domains.** For dyadic rates in the Stage 6 grid, the coset-union construction
+   appears harmless at `q_bits = 256`; the best row is `125` bits below the `eps*q` budget.
+2. **General mixed-smooth domains.** The quotient-optimized construction produces many
+   budget-beating rows below the entropy capacity candidate. Any prize-level upper bound must
+   either exclude these domains by convention or include an additional obstruction term.
+
 ## Missing Prize-Level Lemma
 
 Candidate upper bound:

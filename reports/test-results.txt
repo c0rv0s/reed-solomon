@@ -25,6 +25,14 @@ test_subgroup_generator_has_expected_order (test_lower_bound_constructions.Lower
 test_validated_binomial_row_is_coset_union_construction (test_lower_bound_constructions.LowerBoundConstructionTests.test_validated_binomial_row_is_coset_union_construction) ... ok
 test_validated_pure_monomial_center_also_matches_exact_count (test_lower_bound_constructions.LowerBoundConstructionTests.test_validated_pure_monomial_center_also_matches_exact_count) ... ok
 test_vanishing_polynomial_uses_only_ell_periodic_powers (test_lower_bound_constructions.LowerBoundConstructionTests.test_vanishing_polynomial_uses_only_ell_periodic_powers) ... ok
+test_generated_rows_include_M_225_q256_candidate (test_quotient_lower_bound_search.QuotientLowerBoundSearchTests.test_generated_rows_include_M_225_q256_candidate) ... ok
+test_is_B_smooth (test_quotient_lower_bound_search.QuotientLowerBoundSearchTests.test_is_B_smooth) ... ok
+test_materialization_selection_includes_M_225_candidate (test_quotient_lower_bound_search.QuotientLowerBoundSearchTests.test_materialization_selection_includes_M_225_candidate) ... ok
+test_materialize_candidate_smoke (test_quotient_lower_bound_search.QuotientLowerBoundSearchTests.test_materialize_candidate_smoke) ... ok
+test_power_of_two_quotient_collapses_for_dyadic_rate (test_quotient_lower_bound_search.QuotientLowerBoundSearchTests.test_power_of_two_quotient_collapses_for_dyadic_rate) ... ok
+test_prime_search_small_case (test_quotient_lower_bound_search.QuotientLowerBoundSearchTests.test_prime_search_small_case) ... ok
+test_rate_to_fraction (test_quotient_lower_bound_search.QuotientLowerBoundSearchTests.test_rate_to_fraction) ... ok
+test_rho_quarter_M_225_candidate (test_quotient_lower_bound_search.QuotientLowerBoundSearchTests.test_rho_quarter_M_225_candidate) ... ok
 test_enumerate_rs_codeword_count (test_rs_code.RSCodeTests.test_enumerate_rs_codeword_count) ... ok
 test_fold_codeword (test_rs_code.RSCodeTests.test_fold_codeword) ... ok
 test_interleave_codewords (test_rs_code.RSCodeTests.test_interleave_codewords) ... ok
@@ -58,6 +66,6 @@ test_parse_int_list (test_triage_validation.TriageValidationTests.test_parse_int
 test_validate_candidate_smoke (test_triage_validation.TriageValidationTests.test_validate_candidate_smoke) ... ok
 
 ----------------------------------------------------------------------
-Ran 58 tests in 23.047s
+Ran 66 tests in 24.114s
 
 OK
