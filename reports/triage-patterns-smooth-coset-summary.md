@@ -1,0 +1,48 @@
+# Triage Pattern Summary
+
+High-count non-boundary rows grouped by modular exponent pattern.
+
+- Rows: `44`
+
+| occurrences | max ratio | max count | p values | n values | domains | pattern | example |
+|---:|---:|---:|---|---|---|---|---|
+| 42 | 3.000 | 4 | 97 193 | 6 8 12 16 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset` | `a=0;b=4;lambda=1` |
+| 39 | 3.000 | 3 | 97 193 | 6 8 12 16 | coset smooth | `exponent_mod_n=4;pattern_center_type=monomial;pattern_domain_group=smooth_coset` | `exponent=4` |
+| 21 | 6.000 | 8 | 97 193 | 6 8 12 16 | coset smooth | `a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset` | `a=2;b=4;lambda=1` |
+| 21 | 3.000 | 6 | 97 193 | 6 8 12 16 | coset smooth | `a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset` | `a=1;b=4;lambda=1` |
+| 20 | 6.000 | 7 | 97 193 | 6 8 12 16 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=2;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset` | `a=0;b=2;c=4;lambda1=1;lambda2=1` |
+| 20 | 3.000 | 6 | 97 193 | 6 8 12 16 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=1;b_mod_n=1;c_minus_b_mod_n=3;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset` | `a=0;b=1;c=4;lambda1=1;lambda2=1` |
+| 20 | 2.000 | 2 | 97 193 | 8 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;c_minus_b_mod_n=5;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=0;b=4;lambda=1` |
+| 16 | 6.000 | 6 | 97 193 | 4 6 8 12 | coset smooth | `exponent_mod_n=2;pattern_center_type=monomial;pattern_domain_group=smooth_coset` | `exponent=2` |
+| 16 | 6.000 | 6 | 97 193 | 4 6 8 12 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset` | `a=0;b=2;lambda=1` |
+| 15 | 4.000 | 4 | 97 193 | 6 12 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset` | `a=0;b=3;lambda=1` |
+| 14 | 4.000 | 4 | 97 193 | 6 12 | coset smooth | `exponent_mod_n=3;pattern_center_type=monomial;pattern_domain_group=smooth_coset` | `exponent=3` |
+| 12 | 3.000 | 5 | 97 193 | 12 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;c_minus_b_mod_n=9;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=0;b=4;lambda=1` |
+| 9 | 3.000 | 4 | 97 193 | 6 12 16 | coset smooth | `a_mod_n=1;b_minus_a_mod_n=1;b_mod_n=2;c_minus_b_mod_n=2;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset` | `a=1;b=2;c=4;lambda1=1;lambda2=1` |
+| 8 | 6.000 | 6 | 97 193 | 12 | coset smooth | `a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;c_minus_b_mod_n=9;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=2;b=4;lambda=1` |
+| 8 | 5.000 | 5 | 97 193 | 6 8 12 | smooth | `a_mod_n=2;b_minus_a_mod_n=1;b_mod_n=3;c_minus_b_mod_n=1;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset` | `a=2;b=3;c=4;lambda1=1;lambda2=1` |
+| 8 | 3.000 | 3 | 97 193 | 6 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;c_minus_b_mod_n=3;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=0;b=4;lambda=1` |
+| 8 | 3.000 | 3 | 97 193 | 6 | coset smooth | `a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;c_minus_b_mod_n=3;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=2;b=4;lambda=1` |
+| 8 | 2.000 | 2 | 97 193 | 6 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;c_minus_b_mod_n=4;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=0;b=3;lambda=1` |
+| 8 | 2.000 | 2 | 97 193 | 8 | coset smooth | `a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;c_minus_b_mod_n=5;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=1;b=4;lambda=1` |
+| 6 | 4.000 | 4 | 97 193 | 12 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;c_minus_b_mod_n=10;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=0;b=3;lambda=1` |
+| 5 | 3.000 | 3 | 97 193 | 6 | coset smooth | `a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;c_minus_b_mod_n=3;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=1;b=4;lambda=1` |
+| 5 | 3.000 | 3 | 97 193 | 8 12 16 | smooth | `a_mod_n=1;b_minus_a_mod_n=1;b_mod_n=2;c_minus_b_mod_n=1;c_mod_n=3;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset` | `a=1;b=2;c=3;lambda1=1;lambda2=1` |
+| 4 | 6.000 | 6 | 97 193 | 12 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=11;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=0;b=2;lambda=1` |
+| 4 | 4.000 | 4 | 97 193 | 8 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=7;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=0;b=2;lambda=1` |
+| 4 | 4.000 | 4 | 97 193 | 8 | coset smooth | `a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;c_minus_b_mod_n=5;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=2;b=4;lambda=1` |
+| 4 | 3.000 | 4 | 97 193 | 8 16 | smooth | `a_mod_n=2;b_minus_a_mod_n=1;b_mod_n=3;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset` | `a=2;b=3;lambda=1` |
+| 4 | 3.000 | 3 | 97 193 | 6 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=5;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=0;b=2;lambda=1` |
+| 4 | 3.000 | 3 | 97 193 | 8 12 | smooth | `a_mod_n=1;b_minus_a_mod_n=2;b_mod_n=3;c_minus_b_mod_n=1;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset` | `a=1;b=3;c=4;lambda1=1;lambda2=1` |
+| 4 | 3.000 | 3 | 97 193 | 8 16 | smooth | `a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=1;c_mod_n=3;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset` | `a=0;b=2;c=3;lambda1=1;lambda2=1` |
+| 4 | 2.000 | 2 | 97 193 | 4 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=3;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=0;b=2;lambda=1` |
+| 4 | 2.000 | 2 | 97 193 | 4 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=2;c_mod_n=0;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset` | `a=0;b=2;c=4;lambda1=1;lambda2=1` |
+| 4 | 0.689 | 3 | 97 193 | 16 | coset smooth | `a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;c_minus_b_mod_n=13;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=1;b=4;lambda=1` |
+| 3 | 3.000 | 4 | 97 193 | 12 | coset smooth | `a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;c_minus_b_mod_n=9;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=1;b=4;lambda=1` |
+| 3 | 2.000 | 3 | 97 193 | 12 | coset smooth | `a_mod_n=3;b_minus_a_mod_n=1;b_mod_n=4;c_minus_b_mod_n=9;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=3;b=4;lambda=1` |
+| 3 | 2.000 | 2 | 97 | 12 16 | coset | `a_mod_n=3;b_minus_a_mod_n=1;b_mod_n=4;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset` | `a=3;b=4;lambda=1` |
+| 3 | 0.689 | 2 | 97 193 | 16 | coset smooth | `a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;c_minus_b_mod_n=13;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=0;b=4;lambda=1` |
+| 2 | 3.000 | 3 | 97 193 | 8 | smooth | `a_mod_n=1;b_minus_a_mod_n=2;b_mod_n=3;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset` | `a=1;b=3;lambda=1` |
+| 2 | 3.000 | 3 | 97 193 | 8 | smooth | `a_mod_n=1;b_minus_a_mod_n=2;b_mod_n=3;c_minus_b_mod_n=6;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=1;b=3;lambda=1` |
+| 2 | 3.000 | 3 | 97 193 | 8 | smooth | `a_mod_n=0;b_minus_a_mod_n=1;b_mod_n=1;c_minus_b_mod_n=2;c_mod_n=3;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset` | `a=0;b=1;c=3;lambda1=1;lambda2=1` |
+| 2 | 3.000 | 3 | 97 193 | 8 | smooth | `a_mod_n=2;b_minus_a_mod_n=1;b_mod_n=3;c_minus_b_mod_n=6;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset` | `c=1;a=2;b=3;lambda=1` |

@@ -94,17 +94,69 @@ def count_by_sampled_subsets(
     }
 
 
+def add_sampling_metrics(row: dict[str, Any], p: int, k: int) -> None:
+    """Add sampling-aware baseline metrics to a triage row."""
+    subsets_checked = int(row["subsets_checked"])
+    subset_space = int(row["subset_space"])
+    agreement_required = int(row["agreement_required"])
+    sampled_generic_expected = subsets_checked * (p ** (k - agreement_required))
+    row["sample_fraction"] = subsets_checked / subset_space if subset_space else 0.0
+    row["sampled_generic_expected"] = sampled_generic_expected
+    row["sampled_generic_ratio"] = row["count"] / max(1.0, float(sampled_generic_expected))
+    row["full_generic_ratio_lower_bound"] = row["generic_ratio_raw"]
+
+
+def add_low_k_fiber_classifier(row: dict[str, Any]) -> None:
+    """Mark simple k=1 monomial subgroup/coset fiber effects."""
+    row["low_k_fiber_size"] = ""
+    row["low_k_fiber_predicted_count"] = ""
+    row["low_k_fiber_explained"] = False
+    if (
+        int(row["k"]) != 1
+        or row["center_type"] != "monomial"
+        or row["domain_type"] not in {"smooth", "coset"}
+    ):
+        return
+    parsed = _parse_parameters(str(row["center_parameters"]))
+    exponent = parsed.get("exponent")
+    if exponent is None:
+        return
+    n = int(row["n"])
+    s = int(row["agreement_required"])
+    fiber_size = math.gcd(exponent, n)
+    predicted = n // fiber_size if fiber_size >= s else 0
+    row["low_k_fiber_size"] = fiber_size
+    row["low_k_fiber_predicted_count"] = predicted
+    row["low_k_fiber_explained"] = int(row["count"]) == predicted
+
+
 def _candidate_ks(n: int) -> list[int]:
     candidates = {n // 2, n // 4, n // 8}
     return sorted(k for k in candidates if 0 < k < n)
 
 
-def _domain_specs(p: int, n: int, random_seeds: Iterable[int]) -> list[tuple[str, str, list[int]]]:
-    specs = [("smooth", "subgroup", smooth_domain(p, n))]
-    if n > 1:
-        specs.append(("coset", "shift=2", smooth_domain(p, n, coset_shift=2)))
+def _domain_specs(
+    p: int,
+    n: int,
+    random_seeds: Iterable[int],
+    coset_shifts: Iterable[int] = (2,),
+) -> list[tuple[str, str, list[int]]]:
+    specs: list[tuple[str, str, list[int]]] = []
+    seen: set[tuple[int, ...]] = set()
+
+    def add(domain_type: str, label: str, domain: list[int]) -> None:
+        signature = tuple(sorted(domain))
+        if signature in seen:
+            return
+        seen.add(signature)
+        specs.append((domain_type, label, domain))
+
+    add("smooth", "subgroup", smooth_domain(p, n))
+    for shift in coset_shifts:
+        if shift % p != 0:
+            add("coset", f"shift={shift}", smooth_domain(p, n, coset_shift=shift))
     for seed in random_seeds:
-        specs.append(("random", f"seed={seed}", random_domain(p, n, seed=seed)))
+        add("random", f"seed={seed}", random_domain(p, n, seed=seed))
     return specs
 
 
@@ -144,17 +196,42 @@ def _parse_parameters(parameters: str) -> dict[str, int]:
     return {key: int(value) for key, value in re.findall(r"([a-zA-Z0-9_]+)=(-?\d+)", parameters)}
 
 
-def pattern_fields(center_type: str, parameters: str, n: int) -> dict[str, Any]:
+def pattern_fields(
+    center_type: str,
+    parameters: str,
+    n: int,
+    p: int | None = None,
+    domain_type: str = "smooth",
+) -> dict[str, Any]:
     """Extract modular pattern fields from center parameters."""
     parsed = _parse_parameters(parameters)
-    out: dict[str, Any] = {"pattern_center_type": center_type}
-    for key in ("exponent", "a", "b", "c"):
-        if key in parsed:
-            out[f"{key}_mod_n"] = parsed[key] % n
-    if "a" in parsed and "b" in parsed:
-        out["b_minus_a_mod_n"] = (parsed["b"] - parsed["a"]) % n
-    if "b" in parsed and "c" in parsed:
-        out["c_minus_b_mod_n"] = (parsed["c"] - parsed["b"]) % n
+    out: dict[str, Any] = {
+        "pattern_center_type": center_type,
+        "pattern_domain_group": "random" if domain_type == "random" else "smooth_coset",
+    }
+    if domain_type == "random":
+        modulus = (p - 1) if p is not None else None
+        for key in ("exponent", "a", "b", "c"):
+            if key in parsed:
+                out[f"{key}_raw"] = parsed[key]
+                if modulus is not None:
+                    out[f"{key}_mod_p_minus_1"] = parsed[key] % modulus
+        if "a" in parsed and "b" in parsed:
+            out["b_minus_a_raw"] = parsed["b"] - parsed["a"]
+            if modulus is not None:
+                out["b_minus_a_mod_p_minus_1"] = (parsed["b"] - parsed["a"]) % modulus
+        if "b" in parsed and "c" in parsed:
+            out["c_minus_b_raw"] = parsed["c"] - parsed["b"]
+            if modulus is not None:
+                out["c_minus_b_mod_p_minus_1"] = (parsed["c"] - parsed["b"]) % modulus
+    else:
+        for key in ("exponent", "a", "b", "c"):
+            if key in parsed:
+                out[f"{key}_mod_n"] = parsed[key] % n
+        if "a" in parsed and "b" in parsed:
+            out["b_minus_a_mod_n"] = (parsed["b"] - parsed["a"]) % n
+        if "b" in parsed and "c" in parsed:
+            out["c_minus_b_mod_n"] = (parsed["c"] - parsed["b"]) % n
     for key in ("lambda", "lambda1", "lambda2"):
         if key in parsed:
             out[key] = parsed[key]
@@ -162,7 +239,13 @@ def pattern_fields(center_type: str, parameters: str, n: int) -> dict[str, Any]:
 
 
 def pattern_signature(row: dict[str, Any]) -> str:
-    fields = pattern_fields(str(row["center_type"]), str(row["center_parameters"]), int(row["n"]))
+    fields = pattern_fields(
+        str(row["center_type"]),
+        str(row["center_parameters"]),
+        int(row["n"]),
+        p=int(row["p"]),
+        domain_type=str(row["domain_type"]),
+    )
     return ";".join(f"{key}={fields[key]}" for key in sorted(fields))
 
 
@@ -253,7 +336,9 @@ def generate_triage_rows(
                                 "method": "sampled_subset_interpolation",
                             }
                             add_score_metrics(row, p=p, N=n, k=k, radius=radius, m=1)
-                            row.update(pattern_fields(center_type, parameters, n))
+                            add_sampling_metrics(row, p=p, k=k)
+                            add_low_k_fiber_classifier(row)
+                            row.update(pattern_fields(center_type, parameters, n, p=p, domain_type=domain_type))
                             row["pattern_signature"] = pattern_signature(row)
                             rows.append(row)
     return sorted(
@@ -324,11 +409,18 @@ def build_triage_comparison_rows(rows: list[dict[str, Any]]) -> list[dict[str, A
     )
 
 
-def extract_pattern_rows(rows: list[dict[str, Any]], min_count: int = 2) -> list[dict[str, Any]]:
+def extract_pattern_rows(
+    rows: list[dict[str, Any]],
+    min_count: int = 2,
+    domain_group: str | None = None,
+) -> list[dict[str, Any]]:
     """Group high rows by modular exponent pattern."""
     grouped: dict[str, list[dict[str, Any]]] = {}
     for row in rows:
         if int(row["count"]) < min_count or bool(row["boundary_case"]):
+            continue
+        row_domain_group = "random" if row["domain_type"] == "random" else "smooth_coset"
+        if domain_group is not None and row_domain_group != domain_group:
             continue
         grouped.setdefault(str(row["pattern_signature"]), []).append(row)
 
@@ -376,12 +468,12 @@ def write_triage_summary(path: Path, rows: list[dict[str, Any]], comparison_rows
         f"- Rows: `{len(rows)}`",
         f"- Comparison rows: `{len(comparison_rows)}`",
         "",
-        "| count | clipped ratio | raw ratio | p | n | k | s | domain | type | parameters | exact subsets |",
-        "|---:|---:|---:|---:|---:|---:|---:|---|---|---|---|",
+        "| count | sampled ratio | full raw ratio | sample frac | p | n | k | s | domain | type | parameters | exact subsets |",
+        "|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|---|",
     ]
     for row in top_rows:
         lines.append(
-            "| {count} | {generic_ratio:.3f} | {generic_ratio_raw:.3f} | {p} | {n} | {k} | {agreement_required} | {domain_type}:{domain_label} | {center_type} | `{center_parameters}` | {exact_subset_scan} |".format(
+            "| {count} | {sampled_generic_ratio:.3f} | {full_generic_ratio_lower_bound:.3f} | {sample_fraction:.3f} | {p} | {n} | {k} | {agreement_required} | {domain_type}:{domain_label} | {center_type} | `{center_parameters}` | {exact_subset_scan} |".format(
                 **row
             )
         )
@@ -446,8 +538,15 @@ TRIAGE_FIELDS = [
     "generic_expected",
     "generic_ratio",
     "generic_ratio_raw",
+    "sample_fraction",
+    "sampled_generic_expected",
+    "sampled_generic_ratio",
+    "full_generic_ratio_lower_bound",
     "boundary_ratio",
     "boundary_case",
+    "low_k_fiber_size",
+    "low_k_fiber_predicted_count",
+    "low_k_fiber_explained",
     "center_type",
     "center_parameters",
     "count",
@@ -496,6 +595,10 @@ def main() -> None:
     parser.add_argument("--comparison-summary", type=Path, required=True)
     parser.add_argument("--patterns-csv", type=Path, required=True)
     parser.add_argument("--patterns-summary", type=Path, required=True)
+    parser.add_argument("--patterns-smooth-coset-csv", type=Path)
+    parser.add_argument("--patterns-smooth-coset-summary", type=Path)
+    parser.add_argument("--patterns-random-csv", type=Path)
+    parser.add_argument("--patterns-random-summary", type=Path)
     parser.add_argument("--random-seeds", type=int, default=10)
     parser.add_argument("--sample-budget", type=int, default=100)
     parser.add_argument("--max-n", type=int, default=16)
@@ -510,6 +613,8 @@ def main() -> None:
     )
     comparison_rows = build_triage_comparison_rows(rows)
     pattern_rows = extract_pattern_rows(rows)
+    smooth_coset_pattern_rows = extract_pattern_rows(rows, domain_group="smooth_coset")
+    random_pattern_rows = extract_pattern_rows(rows, domain_group="random")
 
     write_csv(args.csv, rows, TRIAGE_FIELDS)
     write_csv(args.comparison_csv, comparison_rows, COMPARISON_FIELDS)
@@ -517,6 +622,14 @@ def main() -> None:
     write_triage_summary(args.summary, rows, comparison_rows)
     write_comparison_summary(args.comparison_summary, comparison_rows)
     write_patterns_summary(args.patterns_summary, pattern_rows)
+    if args.patterns_smooth_coset_csv:
+        write_csv(args.patterns_smooth_coset_csv, smooth_coset_pattern_rows, PATTERN_FIELDS)
+    if args.patterns_smooth_coset_summary:
+        write_patterns_summary(args.patterns_smooth_coset_summary, smooth_coset_pattern_rows)
+    if args.patterns_random_csv:
+        write_csv(args.patterns_random_csv, random_pattern_rows, PATTERN_FIELDS)
+    if args.patterns_random_summary:
+        write_patterns_summary(args.patterns_random_summary, random_pattern_rows)
 
 
 if __name__ == "__main__":

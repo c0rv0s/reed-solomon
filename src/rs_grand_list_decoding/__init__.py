@@ -7,4 +7,5 @@ __all__ = [
     "rs_code",
     "structured_bad_centers",
     "triage_search",
+    "triage_validation",
 ]

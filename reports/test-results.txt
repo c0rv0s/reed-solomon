@@ -35,14 +35,21 @@ test_smooth_and_random_domains_are_valid (test_structured_bad_centers.Structured
 test_sparse_center (test_structured_bad_centers.StructuredBadCenterTests.test_sparse_center) ... ok
 test_structured_search_does_not_exceed_exact_profile (test_structured_bad_centers.StructuredBadCenterTests.test_structured_search_does_not_exceed_exact_profile) ... ok
 test_comparison_and_patterns_smoke (test_triage_search.TriageSearchTests.test_comparison_and_patterns_smoke) ... ok
+test_domain_specs_dedupe_coset_shift_inside_subgroup (test_triage_search.TriageSearchTests.test_domain_specs_dedupe_coset_shift_inside_subgroup) ... ok
 test_generate_triage_rows_smoke (test_triage_search.TriageSearchTests.test_generate_triage_rows_smoke) ... ok
+test_low_k_fiber_classifier_explains_monomial_artifact (test_triage_search.TriageSearchTests.test_low_k_fiber_classifier_explains_monomial_artifact) ... ok
 test_pattern_fields (test_triage_search.TriageSearchTests.test_pattern_fields) ... ok
+test_pattern_fields_random_uses_raw_and_field_modulus (test_triage_search.TriageSearchTests.test_pattern_fields_random_uses_raw_and_field_modulus) ... ok
 test_sampled_count_matches_exact_when_full_subset_space_scanned (test_triage_search.TriageSearchTests.test_sampled_count_matches_exact_when_full_subset_space_scanned) ... ok
 test_sampled_index_subsets_deterministic_when_sampled (test_triage_search.TriageSearchTests.test_sampled_index_subsets_deterministic_when_sampled) ... ok
 test_sampled_index_subsets_exact_when_budget_suffices (test_triage_search.TriageSearchTests.test_sampled_index_subsets_exact_when_budget_suffices) ... ok
+test_sampling_metrics (test_triage_search.TriageSearchTests.test_sampling_metrics) ... ok
 test_stable_seed (test_triage_search.TriageSearchTests.test_stable_seed) ... ok
+test_center_from_row_reconstructs_monomial (test_triage_validation.TriageValidationTests.test_center_from_row_reconstructs_monomial) ... ok
+test_parse_int_list (test_triage_validation.TriageValidationTests.test_parse_int_list) ... ok
+test_validate_candidate_smoke (test_triage_validation.TriageValidationTests.test_validate_candidate_smoke) ... ok
 
 ----------------------------------------------------------------------
-Ran 43 tests in 21.325s
+Ran 50 tests in 20.703s
 
 OK

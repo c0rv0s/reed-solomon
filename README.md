@@ -20,6 +20,10 @@ Prize.
 - `reports/triage-search.csv`: sampled scale-and-triage search for larger prime fields.
 - `reports/triage-domain-comparison.csv`: triage smooth-vs-random comparison.
 - `reports/triage-patterns.csv`: modular exponent pattern groups from high triage rows.
+- `reports/triage-patterns-smooth-coset.csv`: subgroup/coset exponent patterns modulo `n`.
+- `reports/triage-patterns-random.csv`: random-domain exponent patterns using raw exponents and modulo `p-1`.
+- `reports/triage-validation.csv`: reruns top smooth triage candidates against 100 random domains.
+- `reports/triage-validation-summary.md`: empirical p-value summary for validated candidates.
 
 ## Run
 
@@ -29,7 +33,8 @@ env PYTHONPATH=src python3 -m rs_grand_list_decoding.rs_capacity_threshold
 env PYTHONPATH=src python3 -m rs_grand_list_decoding.rs_capacity_threshold --csv reports/capacity-table.csv --summary reports/capacity-summary.md
 env PYTHONPATH=src python3 -m rs_grand_list_decoding.exact_search --csv reports/exact-sweep.csv --summary reports/exact-sweep-summary.md
 env PYTHONPATH=src python3 -m rs_grand_list_decoding.structured_bad_centers --csv reports/structured-centers.csv --summary reports/structured-centers-summary.md --comparison-csv reports/domain-comparison.csv --comparison-summary reports/domain-comparison-summary.md
-env PYTHONPATH=src python3 -m rs_grand_list_decoding.triage_search --csv reports/triage-search.csv --summary reports/triage-search-summary.md --comparison-csv reports/triage-domain-comparison.csv --comparison-summary reports/triage-domain-comparison-summary.md --patterns-csv reports/triage-patterns.csv --patterns-summary reports/triage-patterns-summary.md
+env PYTHONPATH=src python3 -m rs_grand_list_decoding.triage_search --csv reports/triage-search.csv --summary reports/triage-search-summary.md --comparison-csv reports/triage-domain-comparison.csv --comparison-summary reports/triage-domain-comparison-summary.md --patterns-csv reports/triage-patterns.csv --patterns-summary reports/triage-patterns-summary.md --patterns-smooth-coset-csv reports/triage-patterns-smooth-coset.csv --patterns-smooth-coset-summary reports/triage-patterns-smooth-coset-summary.md --patterns-random-csv reports/triage-patterns-random.csv --patterns-random-summary reports/triage-patterns-random-summary.md
+env PYTHONPATH=src python3 -m rs_grand_list_decoding.triage_validation --input reports/triage-search.csv --csv reports/triage-validation.csv --summary reports/triage-validation-summary.md
 ```
 
 ## Notes

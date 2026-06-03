@@ -1,53 +1,83 @@
 pattern_signature,occurrences,max_count,max_generic_ratio,p_values,n_values,domain_types,best_parameters
-a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;lambda=1;pattern_center_type=binomial,69,4,3.0,97 193,6 8 12 16,coset random smooth,a=0;b=4;lambda=1
-exponent_mod_n=4;pattern_center_type=monomial,62,3,3.0,97 193,6 8 12 16,coset random smooth,exponent=4
-a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;lambda=1;pattern_center_type=binomial,37,8,6.0,97 193,6 8 12 16,coset random smooth,a=2;b=4;lambda=1
-a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=2;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial,35,7,6.0,97 193,6 8 12 16,coset random smooth,a=0;b=2;c=4;lambda1=1;lambda2=1
-a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;lambda=1;pattern_center_type=binomial,30,6,3.0,97 193,6 8 12 16,coset random smooth,a=1;b=4;lambda=1
-a_mod_n=0;b_minus_a_mod_n=1;b_mod_n=1;c_minus_b_mod_n=3;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial,29,6,3.0,97 193,6 8 12 16,coset random smooth,a=0;b=1;c=4;lambda1=1;lambda2=1
-a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;lambda=1;pattern_center_type=binomial,28,4,4.0,97 193,6 8 12 16,coset random smooth,a=0;b=3;lambda=1
-a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;c_minus_b_mod_n=9;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,28,5,3.0,97 193,12,coset random smooth,c=1;a=0;b=4;lambda=1
-a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;c_minus_b_mod_n=5;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,25,2,2.0,97 193,8,coset random smooth,c=1;a=0;b=4;lambda=1
-exponent_mod_n=3;pattern_center_type=monomial,24,4,4.0,97 193,6 8 12 16,coset random smooth,exponent=3
-a_mod_n=1;b_minus_a_mod_n=1;b_mod_n=2;c_minus_b_mod_n=2;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial,20,4,3.0,97 193,6 8 12 16,coset random smooth,a=1;b=2;c=4;lambda1=1;lambda2=1
-exponent_mod_n=2;pattern_center_type=monomial,19,6,6.0,97 193,4 6 8 12,coset random smooth,exponent=2
-a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;lambda=1;pattern_center_type=binomial,19,6,6.0,97 193,4 6 8 12,coset random smooth,a=0;b=2;lambda=1
-a_mod_n=2;b_minus_a_mod_n=1;b_mod_n=3;c_minus_b_mod_n=1;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial,18,5,5.0,97 193,6 8 12 16,random smooth,a=2;b=3;c=4;lambda1=1;lambda2=1
-a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;c_minus_b_mod_n=9;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,16,6,6.0,97 193,12,coset random smooth,c=1;a=2;b=4;lambda=1
-a_mod_n=1;b_minus_a_mod_n=2;b_mod_n=3;c_minus_b_mod_n=1;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial,12,3,3.0,97 193,8 12 16,random smooth,a=1;b=3;c=4;lambda1=1;lambda2=1
-a_mod_n=3;b_minus_a_mod_n=1;b_mod_n=4;lambda=1;pattern_center_type=binomial,12,4,2.0,97 193,12 16,coset random,a=3;b=4;lambda=1
-a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;c_minus_b_mod_n=10;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,11,4,4.0,97 193,12,coset random smooth,c=1;a=0;b=3;lambda=1
-a_mod_n=2;b_minus_a_mod_n=1;b_mod_n=3;lambda=1;pattern_center_type=binomial,10,4,3.0,97 193,8 16,random smooth,a=2;b=3;lambda=1
-a_mod_n=1;b_minus_a_mod_n=1;b_mod_n=2;c_minus_b_mod_n=1;c_mod_n=3;lambda1=1;lambda2=1;pattern_center_type=trinomial,10,4,3.0,97 193,8 12 16,random smooth,a=1;b=2;c=3;lambda1=1;lambda2=1
-a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;c_minus_b_mod_n=9;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,10,4,3.0,97 193,12,coset random smooth,c=1;a=1;b=4;lambda=1
-a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;c_minus_b_mod_n=1;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial,10,3,2.0,97 193,12 16,coset random smooth,a=0;b=3;c=4;lambda1=1;lambda2=1
-a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;c_minus_b_mod_n=4;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,9,2,2.0,97 193,6,coset random smooth,c=1;a=0;b=3;lambda=1
-a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;c_minus_b_mod_n=5;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,9,2,2.0,97 193,8,coset random smooth,c=1;a=1;b=4;lambda=1
-a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;c_minus_b_mod_n=3;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,8,3,3.0,97 193,6,coset smooth,c=1;a=0;b=4;lambda=1
-a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;c_minus_b_mod_n=3;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,8,3,3.0,97 193,6,coset smooth,c=1;a=2;b=4;lambda=1
-a_mod_n=0;b_minus_a_mod_n=1;b_mod_n=1;c_minus_b_mod_n=2;c_mod_n=3;lambda1=1;lambda2=1;pattern_center_type=trinomial,7,3,3.0,97 193,8 16,random smooth,a=0;b=1;c=3;lambda1=1;lambda2=1
-a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;c_minus_b_mod_n=14;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,7,3,0.6892857142857143,97 193,16,random,c=1;a=0;b=3;lambda=1
-a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=11;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,6,6,6.0,97 193,12,coset random smooth,c=1;a=0;b=2;lambda=1
-a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;c_minus_b_mod_n=5;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,6,4,4.0,97 193,8,coset random smooth,c=1;a=2;b=4;lambda=1
-a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=1;c_mod_n=3;lambda1=1;lambda2=1;pattern_center_type=trinomial,6,3,3.0,97 193,8 16,random smooth,a=0;b=2;c=3;lambda1=1;lambda2=1
-a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;c_minus_b_mod_n=13;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,6,3,0.6892857142857143,97 193,16,coset random smooth,c=1;a=0;b=4;lambda=1
-a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=7;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,5,4,4.0,97 193,8,coset random smooth,c=1;a=0;b=2;lambda=1
-a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;c_minus_b_mod_n=3;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,5,3,3.0,97 193,6,coset smooth,c=1;a=1;b=4;lambda=1
-a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;c_minus_b_mod_n=13;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,5,3,0.6892857142857143,97 193,16,coset random smooth,c=1;a=1;b=4;lambda=1
-a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=5;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,4,3,3.0,97 193,6,coset smooth,c=1;a=0;b=2;lambda=1
-a_mod_n=1;b_minus_a_mod_n=2;b_mod_n=3;lambda=1;pattern_center_type=binomial,4,3,3.0,97 193,8 16,random smooth,a=1;b=3;lambda=1
-a_mod_n=3;b_minus_a_mod_n=1;b_mod_n=4;c_minus_b_mod_n=9;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,4,3,2.0,97 193,12,coset random smooth,c=1;a=3;b=4;lambda=1
-a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=3;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,4,2,2.0,97 193,4,coset smooth,c=1;a=0;b=2;lambda=1
-a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=2;c_mod_n=0;lambda1=1;lambda2=1;pattern_center_type=trinomial,4,2,2.0,97 193,4,coset smooth,a=0;b=2;c=4;lambda1=1;lambda2=1
-a_mod_n=3;b_minus_a_mod_n=1;b_mod_n=4;c_minus_b_mod_n=13;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,4,3,1.0339285714285713,97 193,16,random,c=1;a=3;b=4;lambda=1
-a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;c_minus_b_mod_n=13;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,4,3,0.5196428571428572,97,16,random smooth,c=1;a=2;b=4;lambda=1
-a_mod_n=2;b_minus_a_mod_n=1;b_mod_n=3;c_minus_b_mod_n=6;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,3,3,3.0,97 193,8,random smooth,c=1;a=2;b=3;lambda=1
-a_mod_n=1;b_minus_a_mod_n=2;b_mod_n=3;c_minus_b_mod_n=14;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,3,2,0.6892857142857143,97 193,16,random,c=1;a=1;b=3;lambda=1
-a_mod_n=1;b_minus_a_mod_n=2;b_mod_n=3;c_minus_b_mod_n=6;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,2,3,3.0,97 193,8,smooth,c=1;a=1;b=3;lambda=1
-a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=0;lambda=1;pattern_center_type=binomial,2,2,2.0,97 193,4,coset,a=2;b=4;lambda=1
-a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=0;c_minus_b_mod_n=1;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,2,2,2.0,97 193,4,coset,c=1;a=2;b=4;lambda=1
-a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;c_minus_b_mod_n=6;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,2,2,2.0,97,8,random,c=1;a=0;b=3;lambda=1
-a_mod_n=1;b_minus_a_mod_n=1;b_mod_n=2;lambda=1;pattern_center_type=binomial,2,2,2.0,97,12,random,a=1;b=2;lambda=1
-a_mod_n=1;b_minus_a_mod_n=1;b_mod_n=2;c_minus_b_mod_n=11;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,2,2,2.0,97,12,random,c=1;a=1;b=2;lambda=1
-a_mod_n=0;b_minus_a_mod_n=1;b_mod_n=1;c_minus_b_mod_n=1;c_mod_n=2;lambda1=1;lambda2=1;pattern_center_type=trinomial,2,2,2.0,97,12,random,a=0;b=1;c=2;lambda1=1;lambda2=1
-a_mod_n=2;b_minus_a_mod_n=1;b_mod_n=3;c_minus_b_mod_n=14;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial,2,2,0.6892857142857143,97 193,16,random,c=1;a=2;b=3;lambda=1
+a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset,42,4,3.0,97 193,6 8 12 16,coset smooth,a=0;b=4;lambda=1
+exponent_mod_n=4;pattern_center_type=monomial;pattern_domain_group=smooth_coset,39,3,3.0,97 193,6 8 12 16,coset smooth,exponent=4
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=4;b_minus_a_raw=4;b_mod_p_minus_1=4;b_raw=4;lambda=1;pattern_center_type=binomial;pattern_domain_group=random,27,3,3.0,97 193,8 12 16,random,a=0;b=4;lambda=1
+exponent_mod_p_minus_1=4;exponent_raw=4;pattern_center_type=monomial;pattern_domain_group=random,23,3,3.0,97 193,8 12 16,random,exponent=4
+a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset,21,8,6.0,97 193,6 8 12 16,coset smooth,a=2;b=4;lambda=1
+a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset,21,6,3.0,97 193,6 8 12 16,coset smooth,a=1;b=4;lambda=1
+a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=2;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset,20,7,6.0,97 193,6 8 12 16,coset smooth,a=0;b=2;c=4;lambda1=1;lambda2=1
+a_mod_n=0;b_minus_a_mod_n=1;b_mod_n=1;c_minus_b_mod_n=3;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset,20,6,3.0,97 193,6 8 12 16,coset smooth,a=0;b=1;c=4;lambda1=1;lambda2=1
+a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;c_minus_b_mod_n=5;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,20,2,2.0,97 193,8,coset smooth,c=1;a=0;b=4;lambda=1
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=4;b_minus_a_raw=4;b_mod_p_minus_1=4;b_raw=4;c_minus_b_mod_p_minus_1=93;c_minus_b_raw=-3;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,18,4,3.0,97,8 12 16,random,c=1;a=0;b=4;lambda=1
+exponent_mod_n=2;pattern_center_type=monomial;pattern_domain_group=smooth_coset,16,6,6.0,97 193,4 6 8 12,coset smooth,exponent=2
+a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset,16,6,6.0,97 193,4 6 8 12,coset smooth,a=0;b=2;lambda=1
+a_mod_p_minus_1=2;a_raw=2;b_minus_a_mod_p_minus_1=2;b_minus_a_raw=2;b_mod_p_minus_1=4;b_raw=4;lambda=1;pattern_center_type=binomial;pattern_domain_group=random,16,3,3.0,97 193,8 12 16,random,a=2;b=4;lambda=1
+a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset,15,4,4.0,97 193,6 12,coset smooth,a=0;b=3;lambda=1
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=2;b_minus_a_raw=2;b_mod_p_minus_1=2;b_raw=2;c_minus_b_mod_p_minus_1=2;c_minus_b_raw=2;c_mod_p_minus_1=4;c_raw=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=random,15,3,3.0,97 193,8 12 16,random,a=0;b=2;c=4;lambda1=1;lambda2=1
+exponent_mod_n=3;pattern_center_type=monomial;pattern_domain_group=smooth_coset,14,4,4.0,97 193,6 12,coset smooth,exponent=3
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=3;b_minus_a_raw=3;b_mod_p_minus_1=3;b_raw=3;lambda=1;pattern_center_type=binomial;pattern_domain_group=random,13,3,3.0,97 193,6 8 12 16,random,a=0;b=3;lambda=1
+a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;c_minus_b_mod_n=9;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,12,5,3.0,97 193,12,coset smooth,c=1;a=0;b=4;lambda=1
+a_mod_p_minus_1=2;a_raw=2;b_minus_a_mod_p_minus_1=2;b_minus_a_raw=2;b_mod_p_minus_1=4;b_raw=4;c_minus_b_mod_p_minus_1=93;c_minus_b_raw=-3;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,12,3,3.0,97,8 12 16,random,c=1;a=2;b=4;lambda=1
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=3;b_minus_a_raw=3;b_mod_p_minus_1=3;b_raw=3;c_minus_b_mod_p_minus_1=94;c_minus_b_raw=-2;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,12,3,3.0,97,6 8 12 16,random,c=1;a=0;b=3;lambda=1
+a_mod_p_minus_1=1;a_raw=1;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=2;b_raw=2;c_minus_b_mod_p_minus_1=2;c_minus_b_raw=2;c_mod_p_minus_1=4;c_raw=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=random,11,4,2.0,97 193,8 12 16,random,a=1;b=2;c=4;lambda1=1;lambda2=1
+exponent_mod_p_minus_1=3;exponent_raw=3;pattern_center_type=monomial;pattern_domain_group=random,10,3,3.0,97 193,6 8 12 16,random,exponent=3
+a_mod_p_minus_1=2;a_raw=2;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=3;b_raw=3;c_minus_b_mod_p_minus_1=1;c_minus_b_raw=1;c_mod_p_minus_1=4;c_raw=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=random,10,3,2.0,97 193,8 12 16,random,a=2;b=3;c=4;lambda1=1;lambda2=1
+a_mod_n=1;b_minus_a_mod_n=1;b_mod_n=2;c_minus_b_mod_n=2;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset,9,4,3.0,97 193,6 12 16,coset smooth,a=1;b=2;c=4;lambda1=1;lambda2=1
+a_mod_p_minus_1=1;a_raw=1;b_minus_a_mod_p_minus_1=3;b_minus_a_raw=3;b_mod_p_minus_1=4;b_raw=4;lambda=1;pattern_center_type=binomial;pattern_domain_group=random,9,3,2.0,97 193,8 12 16,random,a=1;b=4;lambda=1
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=1;b_raw=1;c_minus_b_mod_p_minus_1=3;c_minus_b_raw=3;c_mod_p_minus_1=4;c_raw=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=random,9,3,2.0,97 193,8 12 16,random,a=0;b=1;c=4;lambda1=1;lambda2=1
+a_mod_p_minus_1=3;a_raw=3;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=4;b_raw=4;lambda=1;pattern_center_type=binomial;pattern_domain_group=random,9,4,0.7797979797979797,97 193,12 16,random,a=3;b=4;lambda=1
+a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;c_minus_b_mod_n=9;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,8,6,6.0,97 193,12,coset smooth,c=1;a=2;b=4;lambda=1
+a_mod_n=2;b_minus_a_mod_n=1;b_mod_n=3;c_minus_b_mod_n=1;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset,8,5,5.0,97 193,6 8 12,smooth,a=2;b=3;c=4;lambda1=1;lambda2=1
+a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;c_minus_b_mod_n=3;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,8,3,3.0,97 193,6,coset smooth,c=1;a=0;b=4;lambda=1
+a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;c_minus_b_mod_n=3;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,8,3,3.0,97 193,6,coset smooth,c=1;a=2;b=4;lambda=1
+a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;c_minus_b_mod_n=4;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,8,2,2.0,97 193,6,coset smooth,c=1;a=0;b=3;lambda=1
+a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;c_minus_b_mod_n=5;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,8,2,2.0,97 193,8,coset smooth,c=1;a=1;b=4;lambda=1
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=3;b_minus_a_raw=3;b_mod_p_minus_1=3;b_raw=3;c_minus_b_mod_p_minus_1=1;c_minus_b_raw=1;c_mod_p_minus_1=4;c_raw=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=random,8,3,0.7797979797979797,97 193,12 16,random,a=0;b=3;c=4;lambda1=1;lambda2=1
+a_mod_p_minus_1=1;a_raw=1;b_minus_a_mod_p_minus_1=2;b_minus_a_raw=2;b_mod_p_minus_1=3;b_raw=3;c_minus_b_mod_p_minus_1=1;c_minus_b_raw=1;c_mod_p_minus_1=4;c_raw=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=random,8,2,0.7797979797979797,97 193,12 16,random,a=1;b=3;c=4;lambda1=1;lambda2=1
+a_mod_p_minus_1=1;a_raw=1;b_minus_a_mod_p_minus_1=3;b_minus_a_raw=3;b_mod_p_minus_1=4;b_raw=4;c_minus_b_mod_p_minus_1=93;c_minus_b_raw=-3;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,7,4,2.0,97,8 12,random,c=1;a=1;b=4;lambda=1
+a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;c_minus_b_mod_n=10;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,6,4,4.0,97 193,12,coset smooth,c=1;a=0;b=3;lambda=1
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=4;b_minus_a_raw=4;b_mod_p_minus_1=4;b_raw=4;c_minus_b_mod_p_minus_1=189;c_minus_b_raw=-3;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,6,3,3.0,193,8 12 16,random,c=1;a=0;b=4;lambda=1
+a_mod_p_minus_1=2;a_raw=2;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=3;b_raw=3;lambda=1;pattern_center_type=binomial;pattern_domain_group=random,6,2,2.0,97 193,8 16,random,a=2;b=3;lambda=1
+a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;c_minus_b_mod_n=3;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,5,3,3.0,97 193,6,coset smooth,c=1;a=1;b=4;lambda=1
+a_mod_n=1;b_minus_a_mod_n=1;b_mod_n=2;c_minus_b_mod_n=1;c_mod_n=3;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset,5,3,3.0,97 193,8 12 16,smooth,a=1;b=2;c=3;lambda1=1;lambda2=1
+a_mod_p_minus_1=1;a_raw=1;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=2;b_raw=2;c_minus_b_mod_p_minus_1=1;c_minus_b_raw=1;c_mod_p_minus_1=3;c_raw=3;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=random,5,4,2.0,97,8 16,random,a=1;b=2;c=3;lambda1=1;lambda2=1
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=1;b_raw=1;c_minus_b_mod_p_minus_1=2;c_minus_b_raw=2;c_mod_p_minus_1=3;c_raw=3;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=random,5,2,0.6892857142857143,97 193,16,random,a=0;b=1;c=3;lambda1=1;lambda2=1
+a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=11;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,4,6,6.0,97 193,12,coset smooth,c=1;a=0;b=2;lambda=1
+a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=7;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,4,4,4.0,97 193,8,coset smooth,c=1;a=0;b=2;lambda=1
+a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;c_minus_b_mod_n=5;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,4,4,4.0,97 193,8,coset smooth,c=1;a=2;b=4;lambda=1
+a_mod_n=2;b_minus_a_mod_n=1;b_mod_n=3;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset,4,4,3.0,97 193,8 16,smooth,a=2;b=3;lambda=1
+a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=5;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,4,3,3.0,97 193,6,coset smooth,c=1;a=0;b=2;lambda=1
+a_mod_n=1;b_minus_a_mod_n=2;b_mod_n=3;c_minus_b_mod_n=1;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset,4,3,3.0,97 193,8 12,smooth,a=1;b=3;c=4;lambda1=1;lambda2=1
+a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=1;c_mod_n=3;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset,4,3,3.0,97 193,8 16,smooth,a=0;b=2;c=3;lambda1=1;lambda2=1
+a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=3;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,4,2,2.0,97 193,4,coset smooth,c=1;a=0;b=2;lambda=1
+a_mod_n=0;b_minus_a_mod_n=2;b_mod_n=2;c_minus_b_mod_n=2;c_mod_n=0;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset,4,2,2.0,97 193,4,coset smooth,a=0;b=2;c=4;lambda1=1;lambda2=1
+a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;c_minus_b_mod_n=13;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,4,3,0.6892857142857143,97 193,16,coset smooth,c=1;a=1;b=4;lambda=1
+a_mod_p_minus_1=3;a_raw=3;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=4;b_raw=4;c_minus_b_mod_p_minus_1=93;c_minus_b_raw=-3;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,4,2,0.39191919191919194,97,12 16,random,c=1;a=3;b=4;lambda=1
+a_mod_n=1;b_minus_a_mod_n=3;b_mod_n=4;c_minus_b_mod_n=9;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,3,4,3.0,97 193,12,coset smooth,c=1;a=1;b=4;lambda=1
+exponent_mod_p_minus_1=2;exponent_raw=2;pattern_center_type=monomial;pattern_domain_group=random,3,3,3.0,97,8 12,random,exponent=2
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=2;b_minus_a_raw=2;b_mod_p_minus_1=2;b_raw=2;lambda=1;pattern_center_type=binomial;pattern_domain_group=random,3,3,3.0,97,8 12,random,a=0;b=2;lambda=1
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=2;b_minus_a_raw=2;b_mod_p_minus_1=2;b_raw=2;c_minus_b_mod_p_minus_1=95;c_minus_b_raw=-1;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,3,3,3.0,97,8 12,random,c=1;a=0;b=2;lambda=1
+a_mod_n=3;b_minus_a_mod_n=1;b_mod_n=4;c_minus_b_mod_n=9;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,3,3,2.0,97 193,12,coset smooth,c=1;a=3;b=4;lambda=1
+a_mod_n=3;b_minus_a_mod_n=1;b_mod_n=4;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset,3,2,2.0,97,12 16,coset,a=3;b=4;lambda=1
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=3;b_minus_a_raw=3;b_mod_p_minus_1=3;b_raw=3;c_minus_b_mod_p_minus_1=190;c_minus_b_raw=-2;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,3,2,2.0,193,12 16,random,c=1;a=0;b=3;lambda=1
+a_mod_n=0;b_minus_a_mod_n=4;b_mod_n=4;c_minus_b_mod_n=13;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,3,2,0.6892857142857143,97 193,16,coset smooth,c=1;a=0;b=4;lambda=1
+a_mod_n=1;b_minus_a_mod_n=2;b_mod_n=3;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset,2,3,3.0,97 193,8,smooth,a=1;b=3;lambda=1
+a_mod_n=1;b_minus_a_mod_n=2;b_mod_n=3;c_minus_b_mod_n=6;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,2,3,3.0,97 193,8,smooth,c=1;a=1;b=3;lambda=1
+a_mod_n=0;b_minus_a_mod_n=1;b_mod_n=1;c_minus_b_mod_n=2;c_mod_n=3;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset,2,3,3.0,97 193,8,smooth,a=0;b=1;c=3;lambda1=1;lambda2=1
+a_mod_n=2;b_minus_a_mod_n=1;b_mod_n=3;c_minus_b_mod_n=6;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,2,3,3.0,97 193,8,smooth,c=1;a=2;b=3;lambda=1
+a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=0;lambda=1;pattern_center_type=binomial;pattern_domain_group=smooth_coset,2,2,2.0,97 193,4,coset,a=2;b=4;lambda=1
+a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=0;c_minus_b_mod_n=1;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,2,2,2.0,97 193,4,coset,c=1;a=2;b=4;lambda=1
+a_mod_p_minus_1=2;a_raw=2;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=3;b_raw=3;c_minus_b_mod_p_minus_1=94;c_minus_b_raw=-2;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,2,2,2.0,97,8 16,random,c=1;a=2;b=3;lambda=1
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=2;b_minus_a_raw=2;b_mod_p_minus_1=2;b_raw=2;c_minus_b_mod_p_minus_1=1;c_minus_b_raw=1;c_mod_p_minus_1=3;c_raw=3;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=random,2,2,2.0,97,8 16,random,a=0;b=2;c=3;lambda1=1;lambda2=1
+a_mod_n=0;b_minus_a_mod_n=3;b_mod_n=3;c_minus_b_mod_n=1;c_mod_n=4;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=smooth_coset,2,2,2.0,97,12,coset smooth,a=0;b=3;c=4;lambda1=1;lambda2=1
+a_mod_p_minus_1=1;a_raw=1;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=2;b_raw=2;lambda=1;pattern_center_type=binomial;pattern_domain_group=random,2,2,2.0,97,12,random,a=1;b=2;lambda=1
+a_mod_p_minus_1=1;a_raw=1;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=2;b_raw=2;c_minus_b_mod_p_minus_1=95;c_minus_b_raw=-1;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,2,2,2.0,97,12,random,c=1;a=1;b=2;lambda=1
+a_mod_p_minus_1=0;a_raw=0;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=1;b_raw=1;c_minus_b_mod_p_minus_1=1;c_minus_b_raw=1;c_mod_p_minus_1=2;c_raw=2;lambda1=1;lambda2=1;pattern_center_type=trinomial;pattern_domain_group=random,2,2,2.0,97,12,random,a=0;b=1;c=2;lambda1=1;lambda2=1
+a_mod_p_minus_1=1;a_raw=1;b_minus_a_mod_p_minus_1=3;b_minus_a_raw=3;b_mod_p_minus_1=4;b_raw=4;c_minus_b_mod_p_minus_1=189;c_minus_b_raw=-3;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,2,2,0.7797979797979797,193,12 16,random,c=1;a=1;b=4;lambda=1
+a_mod_p_minus_1=1;a_raw=1;b_minus_a_mod_p_minus_1=2;b_minus_a_raw=2;b_mod_p_minus_1=3;b_raw=3;lambda=1;pattern_center_type=binomial;pattern_domain_group=random,2,3,0.5196428571428572,97,16,random,a=1;b=3;lambda=1
+a_mod_p_minus_1=1;a_raw=1;b_minus_a_mod_p_minus_1=2;b_minus_a_raw=2;b_mod_p_minus_1=3;b_raw=3;c_minus_b_mod_p_minus_1=94;c_minus_b_raw=-2;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,2,2,0.3464285714285714,97,16,random,c=1;a=1;b=3;lambda=1
+a_mod_p_minus_1=3;a_raw=3;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=4;b_raw=4;c_minus_b_mod_p_minus_1=189;c_minus_b_raw=-3;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,1,3,1.0339285714285713,193,16,random,c=1;a=3;b=4;lambda=1
+a_mod_p_minus_1=2;a_raw=2;b_minus_a_mod_p_minus_1=2;b_minus_a_raw=2;b_mod_p_minus_1=4;b_raw=4;c_minus_b_mod_p_minus_1=189;c_minus_b_raw=-3;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,1,2,0.7797979797979797,193,12,random,c=1;a=2;b=4;lambda=1
+a_mod_p_minus_1=1;a_raw=1;b_minus_a_mod_p_minus_1=2;b_minus_a_raw=2;b_mod_p_minus_1=3;b_raw=3;c_minus_b_mod_p_minus_1=190;c_minus_b_raw=-2;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,1,2,0.6892857142857143,193,16,random,c=1;a=1;b=3;lambda=1
+a_mod_p_minus_1=2;a_raw=2;b_minus_a_mod_p_minus_1=1;b_minus_a_raw=1;b_mod_p_minus_1=3;b_raw=3;c_minus_b_mod_p_minus_1=190;c_minus_b_raw=-2;c_mod_p_minus_1=1;c_raw=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=random,1,2,0.6892857142857143,193,16,random,c=1;a=2;b=3;lambda=1
+a_mod_n=2;b_minus_a_mod_n=2;b_mod_n=4;c_minus_b_mod_n=13;c_mod_n=1;lambda=1;pattern_center_type=shifted_binomial;pattern_domain_group=smooth_coset,1,3,0.5196428571428572,97,16,smooth,c=1;a=2;b=4;lambda=1
