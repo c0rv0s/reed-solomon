@@ -63,14 +63,22 @@ The Stage 6 grid in `reports/lower-bound-grid.csv` checks the requested power-of
 is `log2(list) - log2(eps*q) = 3 - 128 = -125`. In this parameter slice, the construction is a
 real smooth-domain obstruction to account for, but not yet a prize-budget counterexample.
 
-Stage 7 reparameterizes the same construction by quotient size `M = n / ell`. If `rho = a/b` and
-`rho * M` is not integral, set
+## Quotient Parameterization
+
+Let `M = n / ell` and `r = s / ell`. The coset-union condition is equivalent to:
+
+```text
+r > rho * M
+r - 1 < rho * M
+```
+
+Therefore the construction exists exactly when `rho * M` is nonintegral. If `rho = a/b`, set
 
 ```text
 r = floor(rho * M) + 1.
 ```
 
-The construction then has
+The construction then has:
 
 ```text
 radius = 1 - r/M
@@ -80,7 +88,7 @@ list lower bound = binom(M, r).
 This shows why power-of-two domains with dyadic rates are the least favorable case: `rho * M` is
 usually integral, so the construction collapses to tiny quotient counts. On mixed-smooth domains it
 can exceed the prize budget. The default Stage 7 report `reports/quotient-lower-bound.csv` finds
-`807` rows for `q_bits = 256` that both beat `eps*q` and lie below the entropy capacity candidate.
+`1000` rows for `q_bits = 256` that both beat `eps*q` and lie below the entropy capacity candidate.
 
 The concrete example from the report is:
 

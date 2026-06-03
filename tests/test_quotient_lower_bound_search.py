@@ -6,10 +6,12 @@ from rs_grand_list_decoding.quotient_lower_bound_search import (
     is_B_smooth,
     is_probable_prime,
     materialize_candidate,
+    materialize_top_candidates,
     minimal_realizing_ell,
     quotient_candidate,
     rate_to_fraction,
     select_materialization_rows,
+    smoothness_level,
 )
 
 
@@ -34,11 +36,13 @@ class QuotientLowerBoundSearchTests(unittest.TestCase):
 
     def test_power_of_two_quotient_collapses_for_dyadic_rate(self):
         rho_num, rho_den = rate_to_fraction("1/4")
-        self.assertIsNone(quotient_candidate(256, rho_num, rho_den))
+        self.assertIsNone(quotient_candidate(224, rho_num, rho_den))
 
     def test_is_B_smooth(self):
         self.assertTrue(is_B_smooth(900, 5))
         self.assertFalse(is_B_smooth(900, 3))
+        self.assertEqual(smoothness_level(900, bounds=(2, 4, 8, 16)), 8)
+        self.assertIsNone(smoothness_level(900, bounds=(2, 4)))
 
     def test_generated_rows_include_M_225_q256_candidate(self):
         rows = generate_quotient_candidates(
@@ -46,8 +50,8 @@ class QuotientLowerBoundSearchTests(unittest.TestCase):
             eps_bits=128,
             rates=("1/4",),
             M_max=225,
-            smoothness_bounds=(16,),
-            n_scale_multipliers=(1,),
+            smoothness_bounds=(8, 16),
+            ell_multipliers=(1,),
         )
         matches = [row for row in rows if row["M"] == 225 and row["q_bits"] == 256]
         self.assertEqual(len(matches), 1)
@@ -60,8 +64,8 @@ class QuotientLowerBoundSearchTests(unittest.TestCase):
         self.assertTrue(row["beats_budget"])
         self.assertTrue(row["below_capacity"])
         self.assertGreater(row["log2_margin"], 50)
-        self.assertEqual(row["M_smooth_B"], 5)
-        self.assertEqual(row["n_smooth_B"], 5)
+        self.assertEqual(row["M_smooth_B"], 8)
+        self.assertEqual(row["n_smooth_B"], 8)
 
     def test_prime_search_small_case(self):
         p = find_prime_for_domain(n=12, q_bits=8, max_trials=1000)
@@ -78,7 +82,7 @@ class QuotientLowerBoundSearchTests(unittest.TestCase):
             rates=("1/4",),
             M_max=45,
             smoothness_bounds=(16,),
-            n_scale_multipliers=(1,),
+            ell_multipliers=(1,),
         )
         row = rows[0]
         materialized = materialize_candidate(row, max_trials=10_000)
@@ -93,10 +97,12 @@ class QuotientLowerBoundSearchTests(unittest.TestCase):
             rates=("1/16", "1/4"),
             M_max=225,
             smoothness_bounds=(128,),
-            n_scale_multipliers=(1,),
+            ell_multipliers=(1,),
         )
         selected = select_materialization_rows(rows, limit=1)
         self.assertTrue(any(row["M"] == 225 and row["rho_den"] == 4 for row in selected))
+        materialized = materialize_top_candidates(rows, limit=1, max_trials=1)
+        self.assertTrue(any(row["M"] == 225 and row["n"] == 900 for row in materialized))
 
 
 if __name__ == "__main__":

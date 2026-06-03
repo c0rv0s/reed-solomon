@@ -73,6 +73,19 @@ def is_B_smooth(n: int, B: int) -> bool:
     return _max_prime_factor(n) <= B
 
 
+def smoothness_level(
+    n: int,
+    bounds: Iterable[int] = (2, 4, 8, 16, 32, 64, 128, 256, 512, 1024),
+) -> int | None:
+    """Return the smallest supplied smoothness bound covering n."""
+    if n <= 0:
+        raise ValueError("n must be positive")
+    for bound in sorted(set(int(bound) for bound in bounds)):
+        if is_B_smooth(n, bound):
+            return bound
+    return None
+
+
 def _threshold_mode(mode: str) -> str:
     if mode == "scalar":
         return "folded"
@@ -86,18 +99,21 @@ def generate_quotient_candidates(
     eps_bits: float = 128.0,
     rates: Iterable[str | float] = ("1/2", "1/4", "1/8", "1/16"),
     M_max: int = 5000,
-    smoothness_bounds: Iterable[int] = (16, 32, 64, 128),
-    n_scale_multipliers: Iterable[int] = (1, 2, 4, 8, 16, 32, 64),
-    mode: str = "scalar",
+    smoothness_bounds: Iterable[int] = (8, 16, 32, 64, 128, 256),
+    ell_multipliers: Iterable[int] = (1, 2, 4, 8, 16, 32, 64),
+    mode: str = "folded",
+    m: int = 1,
+    n_scale_multipliers: Iterable[int] | None = None,
 ) -> list[dict[str, Any]]:
     """Generate smooth quotient-level coset-union lower-bound candidates."""
     smoothness_bounds = tuple(sorted(set(int(bound) for bound in smoothness_bounds)))
     if not smoothness_bounds:
         raise ValueError("at least one smoothness bound is required")
-    max_smoothness = max(smoothness_bounds)
-    multipliers = tuple(sorted(set(int(multiplier) for multiplier in n_scale_multipliers)))
+    if n_scale_multipliers is not None:
+        ell_multipliers = n_scale_multipliers
+    multipliers = tuple(sorted(set(int(multiplier) for multiplier in ell_multipliers)))
     if any(multiplier <= 0 for multiplier in multipliers):
-        raise ValueError("n scale multipliers must be positive")
+        raise ValueError("ell multipliers must be positive")
 
     parsed_rates = [rate_to_fraction(rho) for rho in rates]
     threshold_mode = _threshold_mode(mode)
@@ -110,8 +126,8 @@ def generate_quotient_candidates(
             candidate = quotient_candidate(M, rho_num, rho_den)
             if candidate is None:
                 continue
-            M_smooth_B = _max_prime_factor(M)
-            if M_smooth_B > max_smoothness:
+            M_smooth_B = smoothness_level(M, smoothness_bounds)
+            if M_smooth_B is None:
                 continue
             ell0 = minimal_realizing_ell(M, rho_num, rho_den)
             r = int(candidate["r"])
@@ -120,8 +136,8 @@ def generate_quotient_candidates(
             for multiplier in multipliers:
                 ell = ell0 * multiplier
                 n = ell * M
-                n_smooth_B = _max_prime_factor(n)
-                if n_smooth_B > max_smoothness:
+                n_smooth_B = smoothness_level(n, smoothness_bounds)
+                if n_smooth_B is None:
                     continue
                 k = (rho_num * n) // rho_den
                 if rho_num * n % rho_den != 0:
@@ -137,16 +153,13 @@ def generate_quotient_candidates(
                             q_bits=q_bits,
                             n=n,
                             rho=rho,
-                            m=1,
+                            m=m,
                             eps_bits=eps_bits,
                             mode=threshold_mode,
                         )
                     threshold = threshold_cache[threshold_key]
                     delta_entropy = float(threshold["delta_entropy"])
                     log2_budget = q_bits - eps_bits
-                    requested_smooth_B = next(
-                        bound for bound in smoothness_bounds if n_smooth_B <= bound
-                    )
                     rows.append(
                         {
                             "q_bits": q_bits,
@@ -165,9 +178,9 @@ def generate_quotient_candidates(
                             "k": k,
                             "s": s,
                             "mode": mode,
+                            "m": m,
                             "M_smooth_B": M_smooth_B,
                             "n_smooth_B": n_smooth_B,
-                            "requested_smooth_B": requested_smooth_B,
                             "log2_list_lower_bound": log2_list,
                             "log2_budget": log2_budget,
                             "log2_margin": log2_list - log2_budget,
@@ -312,6 +325,18 @@ def select_materialization_rows(rows: list[dict[str, Any]], limit: int) -> list[
     return selected
 
 
+def materialize_top_candidates(
+    rows: list[dict[str, Any]],
+    limit: int = 20,
+    max_trials: int = 100_000,
+) -> list[dict[str, Any]]:
+    """Materialize selected top quotient rows as concrete prime fields."""
+    return [
+        materialize_candidate(row, max_trials=max_trials)
+        for row in select_materialization_rows(rows, limit)
+    ]
+
+
 QUOTIENT_FIELDS = [
     "q_bits",
     "eps_bits",
@@ -329,9 +354,9 @@ QUOTIENT_FIELDS = [
     "k",
     "s",
     "mode",
+    "m",
     "M_smooth_B",
     "n_smooth_B",
-    "requested_smooth_B",
     "log2_list_lower_bound",
     "log2_budget",
     "log2_margin",
@@ -439,9 +464,11 @@ def main() -> None:
     parser.add_argument("--eps-bits", type=float, default=128.0)
     parser.add_argument("--rates", default="1/2,1/4,1/8,1/16")
     parser.add_argument("--M-max", type=int, default=5000)
-    parser.add_argument("--smoothness-bounds", default="16,32,64,128")
-    parser.add_argument("--n-scale-multipliers", default="1,2,4,8,16,32,64")
-    parser.add_argument("--mode", default="scalar")
+    parser.add_argument("--smoothness-bounds", default="8,16,32,64,128,256")
+    parser.add_argument("--ell-multipliers", default="1,2,4,8,16,32,64")
+    parser.add_argument("--n-scale-multipliers", dest="ell_multipliers", help=argparse.SUPPRESS)
+    parser.add_argument("--mode", default="folded", choices=("folded", "interleaved", "scalar"))
+    parser.add_argument("--m", type=int, default=1)
     parser.add_argument("--materialize-limit", type=int, default=20)
     parser.add_argument("--prime-max-trials", type=int, default=100_000)
     args = parser.parse_args()
@@ -452,14 +479,15 @@ def main() -> None:
         rates=_parse_number_list(args.rates, str),
         M_max=args.M_max,
         smoothness_bounds=_parse_number_list(args.smoothness_bounds, int),
-        n_scale_multipliers=_parse_number_list(args.n_scale_multipliers, int),
+        ell_multipliers=_parse_number_list(args.ell_multipliers, int),
         mode=args.mode,
+        m=args.m,
     )
-    materialization_rows = select_materialization_rows(rows, args.materialize_limit)
-    materialized = [
-        materialize_candidate(row, max_trials=args.prime_max_trials)
-        for row in materialization_rows
-    ]
+    materialized = materialize_top_candidates(
+        rows,
+        limit=args.materialize_limit,
+        max_trials=args.prime_max_trials,
+    )
     write_csv(args.csv, rows, QUOTIENT_FIELDS)
     write_csv(args.materialized_csv, materialized, MATERIALIZED_FIELDS)
     write_summary(args.summary, rows, materialized)
