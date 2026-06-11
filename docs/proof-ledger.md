@@ -101,16 +101,16 @@ n = 900
 k = 225
 s = 228
 radius = 0.746666...
-delta_entropy = 0.747370...
+delta_entropy = 0.747355...
 log2 binom(225,57) = 179.683
-log2(eps*q) = 128
-margin = 51.683 bits
+log2(eps*p) = 127.000...
+margin = 52.683 bits
 ```
 
-The materialization report found a 256-bit prime `p = c*n + 1`, so this is not only a numerical
-quotient row; it can be realized as a multiplicative subgroup over a concrete prime field. This is
-a likely counterexample to a capacity-threshold statement for general mixed-smooth domains, unless
-the challenge intends a narrower two-power or two-adic FFT-domain convention.
+The materialization report uses a 256-bit Proth-certified prime `p = c*n + 1`, so this is not only
+a numerical quotient row; it can be realized as a multiplicative subgroup over a concrete prime
+field. This is a likely counterexample to a capacity-threshold statement for general mixed-smooth
+domains, unless the challenge intends a narrower two-power or two-adic FFT-domain convention.
 
 The flagship witness is recorded in `reports/mixed-smooth-counterexample.json`, with the submission
 note in `docs/mixed-smooth-counterexample.md`.

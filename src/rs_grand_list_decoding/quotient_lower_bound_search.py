@@ -18,7 +18,12 @@ from rs_grand_list_decoding.lower_bound_constructions import (
 from rs_grand_list_decoding.rs_capacity_threshold import ln_comb, threshold_params
 
 
-FLAGSHIP_P = 113587870819372984150413973900815656245416580843101846708780512849404592004301
+PROTH_FLAGSHIP_P = 57896044618658832082471718862899876603311192244129634666496950740282297548801
+PROTH_K = 36028797018964425
+PROTH_N = 200
+PROTH_WITNESS = 7
+ALTERNATE_FLAGSHIP_P = 113587870819372984150413973900815656245416580843101846708780512849404592004301
+FLAGSHIP_P = PROTH_FLAGSHIP_P
 FLAGSHIP_M = 225
 FLAGSHIP_RATE = "1/4"
 FLAGSHIP_ELL_MULTIPLIER = 1
@@ -257,6 +262,17 @@ def is_probable_prime(n: int, rounds: int = 32) -> bool:
     return True
 
 
+def verify_proth_certificate(p: int, k: int, n: int, witness: int) -> bool:
+    """Verify a Proth primality certificate."""
+    if p != k * 2**n + 1:
+        return False
+    if k % 2 != 1:
+        return False
+    if k >= 2**n:
+        return False
+    return pow(witness, (p - 1) // 2, p) == p - 1
+
+
 def find_prime_congruent_one_mod_n(
     n: int,
     q_bits: int,
@@ -393,6 +409,16 @@ def verify_flagship_prime() -> dict[str, Any]:
     return {
         "p": FLAGSHIP_P,
         "n": 900,
+        "certificate_type": "Proth",
+        "proth_k": PROTH_K,
+        "proth_n": PROTH_N,
+        "proth_witness": PROTH_WITNESS,
+        "proth_certificate_verified": verify_proth_certificate(
+            FLAGSHIP_P,
+            PROTH_K,
+            PROTH_N,
+            PROTH_WITNESS,
+        ),
         "prime_verified": is_probable_prime(FLAGSHIP_P),
         "p_mod_n": FLAGSHIP_P % 900,
         "p_bit_length": FLAGSHIP_P.bit_length(),
@@ -411,6 +437,14 @@ def flagship_counterexample() -> dict[str, Any]:
         p=FLAGSHIP_P,
     )
     row["prime_verification"] = verify_flagship_prime()
+    row["alternate_witness"] = materialize_candidate(
+        FLAGSHIP_M,
+        rho=FLAGSHIP_RATE,
+        ell_multiplier=FLAGSHIP_ELL_MULTIPLIER,
+        q_bits=math.log2(ALTERNATE_FLAGSHIP_P),
+        eps_bits=FLAGSHIP_EPS_BITS,
+        p=ALTERNATE_FLAGSHIP_P,
+    )
     return row
 
 

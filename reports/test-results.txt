@@ -68,6 +68,6 @@ test_parse_int_list (test_triage_validation.TriageValidationTests.test_parse_int
 test_validate_candidate_smoke (test_triage_validation.TriageValidationTests.test_validate_candidate_smoke) ... ok
 
 ----------------------------------------------------------------------
-Ran 68 tests in 25.672s
+Ran 68 tests in 22.320s
 
 OK

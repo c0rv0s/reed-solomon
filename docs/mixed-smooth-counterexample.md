@@ -69,15 +69,24 @@ ell | n,  ell | s,  s > k,  s - ell < k.
 Use the prime
 
 ```text
-p = 113587870819372984150413973900815656245416580843101846708780512849404592004301.
+p = 57896044618658832082471718862899876603311192244129634666496950740282297548801.
 ```
 
-The generated verification report records:
+This prime has a short Proth certificate:
 
 ```text
-p is prime: true
+p = 36028797018964425 * 2^200 + 1
+36028797018964425 is odd
+36028797018964425 < 2^200
+7^((p-1)/2) = -1 mod p
+```
+
+By Proth's theorem, `p` is prime. The generated verification report also records:
+
+```text
+Proth certificate verified: true
 p mod 900 = 1
-log2(p) = 255.97227209501648
+log2(p) = 255.00000000000003
 ```
 
 Since `p = 1 mod 900`, `F_p^*` contains a multiplicative subgroup `H` of size
@@ -123,26 +132,26 @@ For `eps = 2^-128`, the allowed budget is
 
 ```text
 eps * p = 2^-128 * p,
-log2(eps * p) = 127.97227209501648.
+log2(eps * p) = 127.00000000000003.
 ```
 
 Hence the list exceeds the budget by
 
 ```text
-179.68295852982317 - 127.97227209501648 = 51.71068643480669 bits.
+179.68295852982317 - 127.00000000000003 = 52.68295852982314 bits.
 ```
 
 The entropy-capacity candidate computed by the repository for this concrete field size and
 `n=900`, `rho=1/4`, `m=1`, folded/scalar mode is
 
 ```text
-delta_entropy = 0.7473699153404939.
+delta_entropy = 0.7473555627193669.
 ```
 
 The obstruction radius satisfies
 
 ```text
-0.7466666666666666 < 0.7473699153404939.
+0.7466666666666666 < 0.7473555627193669.
 ```
 
 So the budget-violating list occurs below the entropy-capacity candidate.

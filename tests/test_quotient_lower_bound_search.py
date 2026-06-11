@@ -2,6 +2,9 @@ import unittest
 
 from rs_grand_list_decoding.quotient_lower_bound_search import (
     FLAGSHIP_P,
+    PROTH_K,
+    PROTH_N,
+    PROTH_WITNESS,
     flagship_counterexample,
     find_prime_for_domain,
     generate_quotient_candidates,
@@ -14,6 +17,7 @@ from rs_grand_list_decoding.quotient_lower_bound_search import (
     rate_to_fraction,
     select_materialization_rows,
     smoothness_level,
+    verify_proth_certificate,
     verify_flagship_prime,
 )
 
@@ -92,6 +96,14 @@ class QuotientLowerBoundSearchTests(unittest.TestCase):
 
     def test_hardcoded_flagship_prime(self):
         verification = verify_flagship_prime()
+        self.assertEqual(FLAGSHIP_P, PROTH_K * 2**PROTH_N + 1)
+        self.assertEqual(PROTH_K % 2, 1)
+        self.assertLess(PROTH_K, 2**PROTH_N)
+        self.assertEqual(pow(PROTH_WITNESS, (FLAGSHIP_P - 1) // 2, FLAGSHIP_P), FLAGSHIP_P - 1)
+        self.assertTrue(
+            verify_proth_certificate(FLAGSHIP_P, PROTH_K, PROTH_N, PROTH_WITNESS)
+        )
+        self.assertTrue(verification["proth_certificate_verified"])
         self.assertTrue(verification["prime_verified"])
         self.assertEqual(verification["p_mod_n"], 1)
         self.assertEqual(FLAGSHIP_P % 900, 1)
