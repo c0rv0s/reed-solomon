@@ -8,6 +8,7 @@ Prize.
 - `SPEC.md`: project spec, mathematical target, and implementation plan.
 - `docs/proof-ledger.md`: proof target and convention questions.
 - `docs/organizer-question.md`: short smooth-domain convention question to send to organizers.
+- `docs/mixed-smooth-counterexample.md`: self-contained proof note for the mixed-smooth witness.
 - `src/rs_grand_list_decoding/`: pure-Python threshold and prime-field utilities.
 - `tests/`: stdlib `unittest` test suite.
 - `reports/capacity-table.csv`: saved capacity/volume-converse experiment results.
@@ -30,6 +31,7 @@ Prize.
 - `reports/quotient-lower-bound.csv`: quotient-optimized mixed-smooth coset-union search.
 - `reports/quotient-lower-bound-summary.md`: headline quotient search summary.
 - `reports/quotient-materialized-primes.csv`: concrete prime fields for selected quotient candidates.
+- `reports/mixed-smooth-counterexample.json`: machine-readable flagship counterexample witness.
 
 ## Run
 
@@ -42,7 +44,7 @@ env PYTHONPATH=src python3 -m rs_grand_list_decoding.structured_bad_centers --cs
 env PYTHONPATH=src python3 -m rs_grand_list_decoding.triage_search --csv reports/triage-search.csv --summary reports/triage-search-summary.md --comparison-csv reports/triage-domain-comparison.csv --comparison-summary reports/triage-domain-comparison-summary.md --patterns-csv reports/triage-patterns.csv --patterns-summary reports/triage-patterns-summary.md --patterns-smooth-coset-csv reports/triage-patterns-smooth-coset.csv --patterns-smooth-coset-summary reports/triage-patterns-smooth-coset-summary.md --patterns-random-csv reports/triage-patterns-random.csv --patterns-random-summary reports/triage-patterns-random-summary.md
 env PYTHONPATH=src python3 -m rs_grand_list_decoding.triage_validation --input reports/triage-search.csv --csv reports/triage-validation.csv --summary reports/triage-validation-summary.md
 env PYTHONPATH=src python3 -m rs_grand_list_decoding.lower_bound_constructions --csv reports/lower-bound-grid.csv --summary reports/lower-bound-grid-summary.md
-env PYTHONPATH=src python3 -m rs_grand_list_decoding.quotient_lower_bound_search --csv reports/quotient-lower-bound.csv --summary reports/quotient-lower-bound-summary.md --materialized-csv reports/quotient-materialized-primes.csv
+env PYTHONPATH=src python3 -m rs_grand_list_decoding.quotient_lower_bound_search --csv reports/quotient-lower-bound.csv --summary reports/quotient-lower-bound-summary.md --materialized-csv reports/quotient-materialized-primes.csv --counterexample-json reports/mixed-smooth-counterexample.json
 ```
 
 ## Notes

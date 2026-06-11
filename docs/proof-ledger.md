@@ -112,6 +112,9 @@ quotient row; it can be realized as a multiplicative subgroup over a concrete pr
 a likely counterexample to a capacity-threshold statement for general mixed-smooth domains, unless
 the challenge intends a narrower two-power or two-adic FFT-domain convention.
 
+The flagship witness is recorded in `reports/mixed-smooth-counterexample.json`, with the submission
+note in `docs/mixed-smooth-counterexample.md`.
+
 ## Domain Convention Split
 
 The proof target now splits into two regimes:

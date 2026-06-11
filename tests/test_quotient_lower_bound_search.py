@@ -1,6 +1,8 @@
 import unittest
 
 from rs_grand_list_decoding.quotient_lower_bound_search import (
+    FLAGSHIP_P,
+    flagship_counterexample,
     find_prime_for_domain,
     generate_quotient_candidates,
     is_B_smooth,
@@ -12,6 +14,7 @@ from rs_grand_list_decoding.quotient_lower_bound_search import (
     rate_to_fraction,
     select_materialization_rows,
     smoothness_level,
+    verify_flagship_prime,
 )
 
 
@@ -33,6 +36,18 @@ class QuotientLowerBoundSearchTests(unittest.TestCase):
         self.assertEqual(ell * 225, 900)
         self.assertEqual((rho_num * ell * 225) // rho_den, 225)
         self.assertEqual(candidate["r"] * ell, 228)
+        materialized = materialize_candidate(
+            225,
+            rho="1/4",
+            ell_multiplier=1,
+            q_bits=256,
+            eps_bits=128,
+            p=FLAGSHIP_P,
+        )
+        self.assertGreater(materialized["log2_list_lower_bound"], 179)
+        self.assertGreater(materialized["log2_margin"], 51)
+        self.assertTrue(materialized["beats_budget"])
+        self.assertTrue(materialized["below_capacity"])
 
     def test_power_of_two_quotient_collapses_for_dyadic_rate(self):
         rho_num, rho_den = rate_to_fraction("1/4")
@@ -74,6 +89,27 @@ class QuotientLowerBoundSearchTests(unittest.TestCase):
         self.assertEqual((p - 1) % 12, 0)
         self.assertEqual(p.bit_length(), 8)
         self.assertTrue(is_probable_prime(p))
+
+    def test_hardcoded_flagship_prime(self):
+        verification = verify_flagship_prime()
+        self.assertTrue(verification["prime_verified"])
+        self.assertEqual(verification["p_mod_n"], 1)
+        self.assertEqual(FLAGSHIP_P % 900, 1)
+        self.assertEqual(FLAGSHIP_P.bit_length(), 256)
+
+    def test_flagship_counterexample(self):
+        row = flagship_counterexample()
+        self.assertEqual(row["p"], FLAGSHIP_P)
+        self.assertEqual(row["n"], 900)
+        self.assertEqual(row["k"], 225)
+        self.assertEqual(row["ell"], 4)
+        self.assertEqual(row["s"], 228)
+        self.assertEqual(row["M"], 225)
+        self.assertEqual(row["r"], 57)
+        self.assertTrue(row["prime_verified"])
+        self.assertEqual(row["p_mod_n"], 1)
+        self.assertTrue(row["beats_budget"])
+        self.assertTrue(row["below_capacity"])
 
     def test_materialize_candidate_smoke(self):
         rows = generate_quotient_candidates(

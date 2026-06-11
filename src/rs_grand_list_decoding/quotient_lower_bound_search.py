@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import math
 import random
 from fractions import Fraction
@@ -15,6 +16,13 @@ from rs_grand_list_decoding.lower_bound_constructions import (
     coset_union_lower_bound_count,
 )
 from rs_grand_list_decoding.rs_capacity_threshold import ln_comb, threshold_params
+
+
+FLAGSHIP_P = 113587870819372984150413973900815656245416580843101846708780512849404592004301
+FLAGSHIP_M = 225
+FLAGSHIP_RATE = "1/4"
+FLAGSHIP_ELL_MULTIPLIER = 1
+FLAGSHIP_EPS_BITS = 128.0
 
 
 def rate_to_fraction(rho: float | str) -> tuple[int, int]:
@@ -249,14 +257,19 @@ def is_probable_prime(n: int, rounds: int = 32) -> bool:
     return True
 
 
-def find_prime_for_domain(n: int, q_bits: int, max_trials: int = 100_000) -> int | None:
+def find_prime_congruent_one_mod_n(
+    n: int,
+    q_bits: int,
+    seed: int = 0,
+    max_trials: int = 100_000,
+) -> int | None:
     """Search for a prime p = c*n + 1 with bit length about q_bits."""
     if n <= 0:
         raise ValueError("n must be positive")
     if q_bits <= 1:
         raise ValueError("q_bits must exceed 1")
     lower = 1 << (q_bits - 1)
-    c = max(1, (lower - 1 + n - 1) // n)
+    c = max(1, (lower - 1 + n - 1) // n) + max(0, seed)
     for _ in range(max_trials):
         p = c * n + 1
         if p.bit_length() > q_bits:
@@ -267,12 +280,16 @@ def find_prime_for_domain(n: int, q_bits: int, max_trials: int = 100_000) -> int
     return None
 
 
-def materialize_candidate(row: dict[str, Any], max_trials: int = 100_000) -> dict[str, Any]:
-    """Search for a concrete prime field realizing a quotient candidate row."""
+def find_prime_for_domain(n: int, q_bits: int, max_trials: int = 100_000) -> int | None:
+    """Backward-compatible alias for prime materialization."""
+    return find_prime_congruent_one_mod_n(n, q_bits=q_bits, max_trials=max_trials)
+
+
+def _materialize_row(row: dict[str, Any], max_trials: int = 100_000) -> dict[str, Any]:
     q_bits = int(float(row["q_bits"]))
     n = int(row["n"])
-    p = find_prime_for_domain(n, q_bits=q_bits, max_trials=max_trials)
-    out = {
+    p = find_prime_congruent_one_mod_n(n, q_bits=q_bits, max_trials=max_trials)
+    return {
         "q_bits": q_bits,
         "rho": row["rho"],
         "M": row["M"],
@@ -295,7 +312,106 @@ def materialize_candidate(row: dict[str, Any], max_trials: int = 100_000) -> dic
         "prime_found": p is not None,
         "p": p or "",
     }
-    return out
+
+
+def materialize_candidate(
+    row_or_M: dict[str, Any] | int,
+    rho: str | float | None = None,
+    ell_multiplier: int = 1,
+    q_bits: float = 256.0,
+    eps_bits: float = 128.0,
+    p: int | None = None,
+    max_trials: int = 100_000,
+) -> dict[str, Any]:
+    """Materialize either a generated row or direct quotient parameters."""
+    if isinstance(row_or_M, dict):
+        return _materialize_row(row_or_M, max_trials=max_trials)
+
+    if rho is None:
+        raise ValueError("rho is required when materializing by M")
+    M = int(row_or_M)
+    rho_num, rho_den = rate_to_fraction(rho)
+    candidate = quotient_candidate(M, rho_num, rho_den)
+    if candidate is None:
+        raise ValueError("rho*M is integral, so no quotient candidate exists")
+    ell0 = minimal_realizing_ell(M, rho_num, rho_den)
+    ell = ell0 * ell_multiplier
+    n = ell * M
+    k = (rho_num * n) // rho_den
+    if rho_num * n % rho_den != 0:
+        raise AssertionError("ell did not realize integral k")
+    r = int(candidate["r"])
+    s = r * ell
+    if p is None:
+        p = find_prime_congruent_one_mod_n(n, q_bits=int(q_bits), max_trials=max_trials)
+    q_bits_effective = math.log2(p) if p is not None else float(q_bits)
+    threshold = threshold_params(
+        q_bits=q_bits_effective,
+        n=n,
+        rho=rho_num / rho_den,
+        m=1,
+        eps_bits=eps_bits,
+        mode="folded",
+    )
+    log2_list = float(candidate["log2_list_lower_bound"])
+    log2_budget = q_bits_effective - eps_bits
+    lower_bound_exact = math.comb(M, r)
+    return {
+        "q_bits": q_bits_effective,
+        "p_bit_length": p.bit_length() if p is not None else "",
+        "rho": rho_num / rho_den,
+        "rho_num": rho_num,
+        "rho_den": rho_den,
+        "M": M,
+        "r": r,
+        "ell": ell,
+        "n": n,
+        "k": k,
+        "s": s,
+        "center": f"x^{s}",
+        "lower_bound": f"binom({M},{r})",
+        "list_lower_bound": lower_bound_exact,
+        "radius": float(candidate["radius"]),
+        "delta_entropy": float(threshold["delta_entropy"]),
+        "log2_list_lower_bound": log2_list,
+        "log2_budget": log2_budget,
+        "log2_margin": log2_list - log2_budget,
+        "eps_bits": eps_bits,
+        "M_smooth_B": smoothness_level(M),
+        "n_smooth_B": smoothness_level(n),
+        "below_capacity": float(candidate["radius"]) <= float(threshold["delta_entropy"]),
+        "beats_budget": log2_list > log2_budget,
+        "prime_found": p is not None,
+        "prime_verified": is_probable_prime(p) if p is not None else False,
+        "p_mod_n": p % n if p is not None else "",
+        "p": p or "",
+    }
+
+
+def verify_flagship_prime() -> dict[str, Any]:
+    """Verify the hardcoded mixed-smooth counterexample prime."""
+    return {
+        "p": FLAGSHIP_P,
+        "n": 900,
+        "prime_verified": is_probable_prime(FLAGSHIP_P),
+        "p_mod_n": FLAGSHIP_P % 900,
+        "p_bit_length": FLAGSHIP_P.bit_length(),
+        "q_bits": math.log2(FLAGSHIP_P),
+    }
+
+
+def flagship_counterexample() -> dict[str, Any]:
+    """Return the hardcoded flagship mixed-smooth counterexample row."""
+    row = materialize_candidate(
+        FLAGSHIP_M,
+        rho=FLAGSHIP_RATE,
+        ell_multiplier=FLAGSHIP_ELL_MULTIPLIER,
+        q_bits=math.log2(FLAGSHIP_P),
+        eps_bits=FLAGSHIP_EPS_BITS,
+        p=FLAGSHIP_P,
+    )
+    row["prime_verification"] = verify_flagship_prime()
+    return row
 
 
 def select_materialization_rows(rows: list[dict[str, Any]], limit: int) -> list[dict[str, Any]]:
@@ -331,10 +447,19 @@ def materialize_top_candidates(
     max_trials: int = 100_000,
 ) -> list[dict[str, Any]]:
     """Materialize selected top quotient rows as concrete prime fields."""
-    return [
-        materialize_candidate(row, max_trials=max_trials)
-        for row in select_materialization_rows(rows, limit)
-    ]
+    materialized = []
+    for row in select_materialization_rows(rows, limit):
+        if (
+            int(float(row["q_bits"])) == 256
+            and int(row["rho_num"]) == 1
+            and int(row["rho_den"]) == 4
+            and int(row["M"]) == FLAGSHIP_M
+            and int(row["ell_multiplier"]) == FLAGSHIP_ELL_MULTIPLIER
+        ):
+            materialized.append(flagship_counterexample())
+        else:
+            materialized.append(materialize_candidate(row, max_trials=max_trials))
+    return materialized
 
 
 QUOTIENT_FIELDS = [
@@ -450,6 +575,14 @@ def write_summary(path: Path, rows: list[dict[str, Any]], materialized: list[dic
     path.write_text("\n".join(lines) + "\n")
 
 
+def write_counterexample_json(path: Path, row: dict[str, Any]) -> None:
+    """Write the flagship mixed-smooth counterexample to JSON."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w") as f:
+        json.dump(row, f, indent=2, sort_keys=True)
+        f.write("\n")
+
+
 def _parse_number_list(text: str, cast: type = int) -> list[Any]:
     values = [part for chunk in text.split(",") for part in chunk.split()]
     return [cast(value) for value in values if value]
@@ -460,6 +593,7 @@ def main() -> None:
     parser.add_argument("--csv", type=Path, required=True)
     parser.add_argument("--summary", type=Path, required=True)
     parser.add_argument("--materialized-csv", type=Path, required=True)
+    parser.add_argument("--counterexample-json", type=Path)
     parser.add_argument("--q-bits", default="128,192,256")
     parser.add_argument("--eps-bits", type=float, default=128.0)
     parser.add_argument("--rates", default="1/2,1/4,1/8,1/16")
@@ -491,6 +625,8 @@ def main() -> None:
     write_csv(args.csv, rows, QUOTIENT_FIELDS)
     write_csv(args.materialized_csv, materialized, MATERIALIZED_FIELDS)
     write_summary(args.summary, rows, materialized)
+    if args.counterexample_json:
+        write_counterexample_json(args.counterexample_json, flagship_counterexample())
 
 
 if __name__ == "__main__":
